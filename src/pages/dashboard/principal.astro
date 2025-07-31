@@ -1,9 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
 import Sidebar from '../../components/Sidebar.astro';
+
+const { ActivePage, activeCompanyName } = Astro.props;
 ---
 <BaseLayout title="Dashboard">
-    <div class="flex flex-grow pt-[60px]"> {/* pt-[60px] para compensar la altura del header fijo */}
+    <div class="flex flex-grow pt-[60px]">
+        <Header ActivePage={"Dashboard"} activeCompanyName={"Compañía"} />
         <Sidebar />
         <main class="flex-grow p-8 ml-48">
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 w-full mx-auto transition-colors duration-300">
