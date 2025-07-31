@@ -1,0 +1,322 @@
+---
+// src/pages/register.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeaderLanding from '../components/HeaderLanding.astro';
+
+const appName = "Contabilito"; // Nombre de tu aplicación
+---
+<BaseLayout title="Regístrate">
+    <HeaderLanding appName={appName} />
+
+    <main class="flex-grow flex items-center justify-center py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden background-dots">
+        <!-- El fondo de puntos está directamente en el main para continuidad -->
+        <!-- El padding vertical (py-20) asegura espacio arriba y abajo -->
+
+        <div class="relative z-10 w-full max-w-xl p-8 bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 animate-fade-in-up">
+            <h1 class="relative z-10 text-3xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-6">
+                ¡Crea tu cuenta!
+            </h1>
+            <p class="relative z-10 text-center text-gray-700 dark:text-gray-300 mb-8">
+                Regístrate para empezar a usar Contabilito.
+            </p>
+
+            <form id="register-form" class="relative z-10 space-y-6">
+                <!-- Nombre y Apellido (en dos columnas en desktop) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="first-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre</label>
+                        <input
+                            type="text"
+                            id="first-name"
+                            name="first_name"
+                            required
+                            autocomplete="given-name"
+                            class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base"
+                            placeholder="Tu nombre"
+                        />
+                    </div>
+                    <div>
+                        <label for="last-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Apellido</label>
+                        <input
+                            type="text"
+                            id="last-name"
+                            name="last_name"
+                            required
+                            autocomplete="family-name"
+                            class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base"
+                            placeholder="Tu apellido"
+                        />
+                    </div>
+                </div>
+
+                <!-- Nombre de Usuario y Nombre de Empresa (en dos columnas en desktop) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre de Usuario</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            required
+                            autocomplete="nickname"
+                            class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base"
+                            placeholder="Elige un nombre de usuario"
+                        />
+                    </div>
+                    <div>
+                        <label for="company-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre de Empresa (Opcional)</label>
+                        <input
+                            type="text"
+                            id="company-name"
+                            name="company_name"
+                            autocomplete="organization"
+                            class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base"
+                            placeholder="Tu empresa (si aplica)"
+                        />
+                    </div>
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Correo Electrónico</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        autocomplete="email"
+                        class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base"
+                        placeholder="tu@ejemplo.com"
+                    />
+                </div>
+
+                <!-- Contraseña y Confirmar Contraseña con toggle -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="relative">
+                        <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Contraseña</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            autocomplete="new-password"
+                            class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base pr-10"
+                            placeholder="••••••••"
+                        />
+                        <button type="button" id="toggle-password-visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 dark:text-gray-400 mt-6">
+                            <i data-lucide="eye" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <label for="confirm-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Confirmar Contraseña</label>
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            name="confirm_password"
+                            required
+                            autocomplete="new-password"
+                            class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base pr-10"
+                            placeholder="••••••••"
+                        />
+                        <button type="button" id="toggle-confirm-password-visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 dark:text-gray-400 mt-6">
+                            <i data-lucide="eye" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Términos y Condiciones -->
+                <div class="flex items-center">
+                    <input
+                        id="terms-accepted"
+                        name="terms_accepted"
+                        type="checkbox"
+                        required
+                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700"
+                    />
+                    <label for="terms-accepted" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">
+                        Acepto los <a href="/terms" class="font-medium text-indigo-600 dark:text-indigo-400 hover:underline">Términos y Condiciones</a>
+                    </label>
+                </div>
+
+                <div id="register-message" class="hidden flex items-center p-3 rounded-md text-sm"></div>
+
+                <button
+                    type="submit"
+                    id="register-button"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 text-lg"
+                >
+                    Registrarse
+                </button>
+            </form>
+
+            <div class="mt-8 text-center text-gray-700 dark:text-gray-300">
+                ¿Ya tienes una cuenta? <a href="/login" class="font-medium text-indigo-600 dark:text-indigo-400 hover:underline">Inicia sesión aquí</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-8 text-center border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
+        <p>&copy; {new Date().getFullYear()} {appName}. Todos los derechos reservados.</p>
+        <p class="mt-2 text-sm">Hecho con <i data-lucide="heart" class="inline-block w-4 h-4 text-red-500"></i> y Astro.</p>
+    </footer>
+
+    <style is:inline>
+        /* Animación de entrada (definido en global.css, solo se usa la clase aquí) */
+        /* Fondo de puntos (definido en global.css, solo se usa la clase aquí) */
+        /* Estilos para los mensajes de feedback (definidos en global.css) */
+        /* Colores específicos para el modo oscuro para asegurar contraste (definidos en global.css) */
+    </style>
+
+    <script is:inline>
+        // Inicializar iconos de Lucide después de que el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            const registerForm = document.getElementById('register-form');
+            const registerButton = document.getElementById('register-button');
+            const registerMessageDiv = document.getElementById('register-message');
+            
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const togglePasswordVisibilityButton = document.getElementById('toggle-password-visibility');
+            const toggleConfirmPasswordVisibilityButton = document.getElementById('toggle-confirm-password-visibility');
+
+            /**
+             * Muestra un mensaje de feedback al usuario.
+             * @param {HTMLElement} element El elemento DIV donde se mostrará el mensaje.
+             * @param {string} type 'success' o 'error'.
+             * @param {string} message El texto del mensaje.
+             */
+            function showMessage(element, type, message) {
+                element.classList.remove('hidden', 'message-success', 'message-error');
+                element.innerHTML = ''; // Limpiar iconos anteriores
+                let iconHtml = '';
+                
+                if (type === 'success') {
+                    iconHtml = '<i data-lucide="check-circle" class="h-5 w-5 mr-2"></i>';
+                    element.classList.add('message-success');
+                } else if (type === 'error') {
+                    iconHtml = '<i data-lucide="x-circle" class="h-5 w-5 mr-2"></i>';
+                    element.classList.add('message-error');
+                }
+
+                element.innerHTML = `${iconHtml}<span>${message}</span>`;
+                element.classList.remove('hidden');
+
+                // Re-render Lucide icons if dynamically added
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
+
+            /**
+             * Oculta un mensaje de feedback.
+             * @param {HTMLElement} element El elemento DIV del mensaje.
+             */
+            function hideMessage(element) {
+                element.classList.add('hidden');
+                element.innerHTML = '';
+            }
+
+            // Lógica para mostrar/ocultar contraseña
+            function setupPasswordToggle(inputElement, toggleButton) {
+                if (toggleButton && inputElement) {
+                    toggleButton.addEventListener('click', () => {
+                        const type = inputElement.getAttribute('type') === 'password' ? 'text' : 'password';
+                        inputElement.setAttribute('type', type);
+                        
+                        const icon = toggleButton.querySelector('i');
+                        if (type === 'password') {
+                            icon.setAttribute('data-lucide', 'eye');
+                        } else {
+                            icon.setAttribute('data-lucide', 'eye-off');
+                        }
+                        if (typeof lucide !== 'undefined') {
+                            lucide.createIcons();
+                        }
+                    });
+                }
+            }
+
+            setupPasswordToggle(passwordInput, togglePasswordVisibilityButton);
+            setupPasswordToggle(confirmPasswordInput, toggleConfirmPasswordVisibilityButton);
+
+
+            // Manejador del envío del formulario de registro
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Prevenir el envío por defecto del formulario
+                hideMessage(registerMessageDiv); // Ocultar mensajes anteriores
+
+                registerButton.disabled = true; // Deshabilitar el botón durante el envío
+                registerButton.textContent = 'Registrando...'; // Cambiar texto del botón
+
+                const firstName = document.getElementById('first-name').value;
+                const lastName = document.getElementById('last-name').value;
+                const username = document.getElementById('username').value;
+                const companyName = document.getElementById('company-name').value; // Opcional
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                const termsAccepted = document.getElementById('terms-accepted').checked;
+
+                // Validación básica en el cliente
+                if (password !== confirmPassword) {
+                    showMessage(registerMessageDiv, 'error', 'Las contraseñas no coinciden.');
+                    registerButton.disabled = false;
+                    registerButton.textContent = 'Registrarse';
+                    return;
+                }
+                if (password.length < 6) {
+                    showMessage(registerMessageDiv, 'error', 'La contraseña debe tener al menos 6 caracteres.');
+                    registerButton.disabled = false;
+                    registerButton.textContent = 'Registrarse';
+                    return;
+                }
+                if (!termsAccepted) {
+                    showMessage(registerMessageDiv, 'error', 'Debes aceptar los Términos y Condiciones.');
+                    registerButton.disabled = false;
+                    registerButton.textContent = 'Registrarse';
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ 
+                            firstName, 
+                            lastName, 
+                            username, 
+                            companyName, 
+                            email, 
+                            password, 
+                            termsAccepted: termsAccepted ? 1 : 0 // Convertir booleano a 1 o 0
+                        }),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        showMessage(registerMessageDiv, 'success', result.message || 'Registro exitoso. Redirigiendo al login...');
+                        // Redirigir al login después de un breve retraso
+                        setTimeout(() => {
+                            window.location.href = '/login'; 
+                        }, 2000);
+                    } else {
+                        showMessage(registerMessageDiv, 'error', result.message || 'Error al registrarse.');
+                    }
+                } catch (error) {
+                    console.error('Error de red al registrarse:', error);
+                    showMessage(registerMessageDiv, 'error', 'Error de red al registrarse. Inténtalo de nuevo.');
+                } finally {
+                    registerButton.disabled = false; // Habilitar el botón
+                    registerButton.textContent = 'Registrarse'; // Restaurar texto del botón
+                }
+            });
+        });
+    </script>
+</BaseLayout>

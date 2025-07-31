@@ -1,0 +1,100 @@
+---
+// src/components/Header.astro
+import ThemeToggle from './ThemeToggle.astro'; // Importa el componente ThemeToggle
+
+interface Props {
+    username: string;
+    activeCompanyName: string;
+    // Aquí podrías pasar también userCompanies para el selector de empresa si lo necesitas en el header
+}
+
+const { username, activeCompanyName } = Astro.props;
+---
+<header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md py-3 px-6 sm:px-10 flex justify-between items-center z-50 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+    <!-- Nombre de la Aplicación -->
+    <div class="flex items-center">
+        <a href="/" class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            Contabilito
+        </a>
+    </div>
+
+    <!-- Sección Central (Nombre de la Sección Actual - Ahora dinámico con JS) -->
+    <div class="flex-grow text-center">
+        <span id="currentSectionTitle" class="text-xl font-semibold text-gray-700 dark:text-gray-300">Dashboard Principal</span>
+    </div>
+
+    <!-- Contenedor de la Derecha (Selector de Empresa, Tema y Perfil/Logout) -->
+    <nav class="flex items-center space-x-4">
+        <!-- Selector de Empresa Activa (Placeholder por ahora) -->
+        <div class="relative group">
+            <button class="bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200 px-4 py-2 rounded-md font-medium hover:bg-blue-200 dark:hover:bg-blue-700 transition duration-200 flex items-center">
+                <span>{activeCompanyName || 'Sin Empresa'}</span> <i data-lucide="chevron-down" class="ml-2 h-4 w-4"></i>
+            </button>
+            <!-- Aquí iría el dropdown de empresas, lo implementaremos más adelante con JS -->
+        </div>
+
+        <!-- Theme Toggle (Astro Island) -->
+        <ThemeToggle client:load /> 
+
+        <!-- Botón de Cerrar Sesión (Placeholder por ahora) -->
+        <button id="logoutButton" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-medium transition duration-200 shadow-sm">
+            Cerrar Sesión
+        </button>
+    </nav>
+</header>
+
+<script is:inline>
+    // Script para actualizar el título de la sección y manejar el logout
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentSectionTitle = document.getElementById('currentSectionTitle');
+        const logoutButton = document.getElementById('logoutButton');
+
+        // Función para actualizar el título de la sección dinámicamente
+        function updateSectionTitle() {
+            const path = window.location.pathname;
+            let title = 'Dashboard Principal'; // Título por defecto
+
+            if (path.includes('/dashboard/companies')) {
+                title = 'Gestión de Empresas';
+            } else if (path.includes('/dashboard/add-transaction')) {
+                title = 'Añadir Transacción';
+            } else if (path.includes('/dashboard/statistics')) {
+                title = 'Estadísticas y Reportes';
+            } else if (path.includes('/dashboard/accounts')) {
+                title = 'Gestión de Cuentas';
+            } else if (path.includes('/dashboard/settings')) { // Nueva página de configuración
+                title = 'Configuración de Cuenta';
+            }
+            // Puedes añadir más condiciones para otras rutas
+
+            if (currentSectionTitle) {
+                currentSectionTitle.textContent = title;
+            }
+        }
+
+        // Manejar el botón de cerrar sesión (necesitará un endpoint de API)
+        if (logoutButton) {
+            logoutButton.addEventListener('click', async () => {
+                try {
+                    const response = await fetch('/api/auth/logout', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    if (response.ok) {
+                        window.location.href = '/login'; // Redirigir a la página de login
+                    } else {
+                        const errorData = await response.json();
+                        console.error('Error al cerrar sesión:', errorData.message);
+                        alert('Error al cerrar sesión: ' + (errorData.message || 'Desconocido')); // Usar un modal en una app real
+                    }
+                } catch (error) {
+                    console.error('Error de red al cerrar sesión:', error);
+                    alert('Error de red al cerrar sesión.'); // Usar un modal en una app real
+                }
+            });
+        }
+
+        // Llamar al cargar la página
+        updateSectionTitle();
+    });
+</script>

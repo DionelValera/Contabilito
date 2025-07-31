@@ -1,0 +1,376 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeaderLanding from '../components/HeaderLanding.astro'; 
+const appName = "Contabilito"; // Nombre de tu aplicación
+---
+<BaseLayout title="Bienvenido">
+    <HeaderLanding appName={appName} />
+
+    <main class="flex-grow pt-[80px] pb-16 bg-gradient-to-br from-blue-50 to-purple-300 dark:from-gray-900 dark:to-gray-800 transition-all duration-900">
+        
+        <section class="max-w-7xl mx-auto px-6 py-20 text-center relative z-10">
+
+            <div class="relative inline-block mb-8">
+
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight animate-fade-in-up">
+                    Tus Finanzas,<br class="hidden sm:inline" /> Simplificadas.
+                </h1>
+
+                <div class="absolute -top-4 -left-6 w-20 h-20 bg-purple-600 dark:bg-purple-800 rounded-full filter blur-xl mix-blend-multiply opacity-100 animate-blob animation-delay-1000"></div>
+                <div class="absolute -bottom-2 -right-4 w-16 h-16 bg-blue-600 dark:bg-blue-800 rounded-full filter blur-xl mix-blend-multiply opacity-100 animate-blob"></div>
+                <!-- <div class="absolute -bottom-4 -center w-16 h-16 bg-blue-600 dark:bg-blue-800 rounded-full  mix-blend-multiply opacity-100 animate-blob"></div> -->
+            
+            </div>
+            
+            <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mt-4 max-w-3xl mx-auto animate-fade-in-up animation-delay-500">
+                Gestiona tus ingresos y gastos, organiza tus cuentas y toma el control de tu futuro financiero con <span class="font-bold text-blue-600 dark:text-blue-400">{appName}</span>.
+            </p>
+            
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-up animation-delay-1000">
+                
+                <a href="/register" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 text-lg flex items-center">
+                    <i data-lucide="sparkles" class="w-6 h-6 mr-3"></i> Empieza Gratis
+                </a>
+
+                <a href="/index2" class="flex bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-300 font-semibold py-3.5 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-lg border border-blue-200 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500">
+                    <i data-lucide="log-in" class="w-6 h-6 mr-3"></i> Ya tengo cuenta
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Features Section (Existing) -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up animation-delay-1500">
+                Características que te encantarán
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-1700">
+                    <i data-lucide="wallet" class="w-16 h-16 mx-auto text-green-600 dark:text-green-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Control Total</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Registra cada ingreso y gasto, categoriza tus transacciones y mantén un seguimiento preciso de tu dinero.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-1900">
+                    <i data-lucide="pie-chart" class="w-16 h-16 mx-auto text-purple-600 dark:text-purple-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Análisis Visual</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Visualiza tus finanzas con gráficos claros y reportes detallados para tomar decisiones inteligentes.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-2100">
+                    <i data-lucide="building-2" class="w-16 h-16 mx-auto text-orange-600 dark:text-orange-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Gestión Multi-Empresa</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Administra las finanzas de múltiples empresas desde una única plataforma intuitiva.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 1: How It Works -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                ¿Cómo funciona? Es simple.
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="relative flex flex-col items-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-300">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full text-xl font-bold shadow-md">1</div>
+                    <i data-lucide="user-plus" class="w-16 h-16 mx-auto text-blue-600 dark:text-blue-400 mb-6 mt-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Regístrate Gratis</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Crea tu cuenta en segundos. Sin tarjetas, sin compromisos. Solo necesitas un email.
+                    </p>
+                </div>
+                <div class="relative flex flex-col items-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-600">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white w-12 h-12 flex items-center justify-center rounded-full text-xl font-bold shadow-md">2</div>
+                    <i data-lucide="layout-dashboard" class="w-16 h-16 mx-auto text-green-600 dark:text-green-400 mb-6 mt-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Organiza tus Finanzas</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Añade tus cuentas, registra transacciones y categoriza todo fácilmente desde tu dashboard.
+                    </p>
+                </div>
+                <div class="relative flex flex-col items-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-900">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white w-12 h-12 flex items-center justify-center rounded-full text-xl font-bold shadow-md">3</div>
+                    <i data-lucide="trending-up" class="w-16 h-16 mx-auto text-purple-600 dark:text-purple-400 mb-6 mt-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Toma Decisiones Inteligentes</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Obtén reportes claros y visualizaciones que te ayudarán a mejorar tu salud financiera.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 2: Testimonials -->
+        <section class="max-w-7xl mx-auto px-6 py-16 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-xl">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                Lo que dicen nuestros usuarios
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 flex flex-col items-center text-center animate-fade-in-up animation-delay-200">
+                    <img src="https://placehold.co/80x80/6366F1/FFFFFF?text=JD" alt="Avatar de usuario" class="w-20 h-20 rounded-full mb-4 border-4 border-blue-400 dark:border-blue-600 shadow-md">
+                    <p class="text-lg text-gray-800 dark:text-gray-200 italic mb-4">
+                        "Contabilito ha transformado la forma en que gestiono mis gastos. ¡Es increíblemente intuitivo y me ahorra muchísimo tiempo!"
+                    </p>
+                    <p class="font-semibold text-blue-600 dark:text-blue-400">- Juan D., Emprendedor</p>
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 flex flex-col items-center text-center animate-fade-in-up animation-delay-400">
+                    <img src="https://placehold.co/80x80/10B981/FFFFFF?text=AM" alt="Avatar de usuario" class="w-20 h-20 rounded-full mb-4 border-4 border-green-400 dark:border-green-600 shadow-md">
+                    <p class="text-lg text-gray-800 dark:text-gray-200 italic mb-4">
+                        "Por fin una herramienta que me permite ver mis finanzas claras. Los reportes son fantásticos y muy fáciles de entender."
+                    </p>
+                    <p class="font-semibold text-green-600 dark:text-green-400">- Ana M., Freelancer</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 3: Pricing/Plans (Mock) -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                Planes para cada necesidad
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plan Básico -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center flex flex-col items-center transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-200">
+                    <i data-lucide="gem" class="w-16 h-16 text-gray-500 dark:text-gray-400 mb-6"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Básico</h3>
+                    <p class="text-5xl font-extrabold text-blue-600 dark:text-blue-400 mb-4">$0<span class="text-xl text-gray-500 dark:text-gray-400">/mes</span></p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-left space-y-2 mb-8">
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-500"></i> 1 Empresa</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-500"></i> Transacciones ilimitadas</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-500"></i> Reportes básicos</li>
+                        <li class="flex items-center text-gray-500 dark:text-gray-400"><i data-lucide="x" class="w-5 h-5 mr-2 text-red-500"></i> Soporte prioritario</li>
+                    </ul>
+                    <a href="/register" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-colors duration-200">
+                        Empieza Gratis
+                    </a>
+                </div>
+
+                <!-- Plan Pro (Destacado) -->
+                <div class="bg-blue-600 dark:bg-blue-900 p-8 rounded-2xl shadow-xl border-4 border-blue-400 dark:border-blue-600 text-white text-center flex flex-col items-center transform scale-[1.05] hover:scale-[1.07] transition-transform duration-300 animate-fade-in-up animation-delay-400">
+                    <i data-lucide="award" class="w-16 h-16 text-yellow-300 mb-6"></i>
+                    <h3 class="text-3xl font-bold mb-2">Pro</h3>
+                    <p class="text-5xl font-extrabold mb-4">$19<span class="text-xl opacity-80">/mes</span></p>
+                    <ul class="text-white text-left space-y-2 mb-8 opacity-90">
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-yellow-300"></i> Empresas ilimitadas</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-yellow-300"></i> Todas las características básicas</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-yellow-300"></i> Reportes avanzados</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-yellow-300"></i> Soporte prioritario</li>
+                    </ul>
+                    <a href="/register" class="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-colors duration-200">
+                        Comprar Plan Pro
+                    </a>
+                </div>
+
+                <!-- Plan Empresarial -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-center flex flex-col items-center transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-600">
+                    <i data-lucide="briefcase" class="w-16 h-16 text-teal-600 dark:text-teal-400 mb-6"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Empresarial</h3>
+                    <p class="text-5xl font-extrabold text-teal-600 dark:text-teal-400 mb-4">¡Contactar!</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-left space-y-2 mb-8">
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-500"></i> Todo lo de Pro</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-500"></i> Soluciones personalizadas</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-500"></i> Integraciones API</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 mr-2 text-green-500"></i> Gestor de cuenta dedicado</li>
+                    </ul>
+                    <a href="/contact" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-colors duration-200">
+                        Contáctanos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 4: FAQ -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                Preguntas Frecuentes
+            </h2>
+            <div class="space-y-6 max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 animate-fade-in-up animation-delay-200">
+                    <button class="faq-question flex justify-between items-center w-full text-left text-xl font-semibold text-gray-900 dark:text-gray-100 py-2">
+                        <span>¿Es Contabilito realmente gratis?</span>
+                        <i data-lucide="chevron-down" class="w-6 h-6 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Sí, ofrecemos un plan Básico completamente gratis con acceso a todas las funcionalidades esenciales para gestionar tus finanzas personales o de una pequeña empresa.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 animate-fade-in-up animation-delay-400">
+                    <button class="faq-question flex justify-between items-center w-full text-left text-xl font-semibold text-gray-900 dark:text-gray-100 py-2">
+                        <span>¿Puedo gestionar múltiples empresas?</span>
+                        <i data-lucide="chevron-down" class="w-6 h-6 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                        ¡Absolutamente! Contabilito está diseñado para que puedas administrar las finanzas de múltiples empresas o proyectos desde un único dashboard, ideal para emprendedores y pymes.
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 animate-fade-in-up animation-delay-600">
+                    <button class="faq-question flex justify-between items-center w-full text-left text-xl font-semibold text-gray-900 dark:text-gray-100 py-2">
+                        <span>¿Mis datos están seguros?</span>
+                        <i data-lucide="chevron-down" class="w-6 h-6 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                        La seguridad de tus datos es nuestra máxima prioridad. Utilizamos encriptación y medidas de seguridad estándar de la industria para proteger tu información financiera.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 5: Final Call to Action / Contact -->
+        <section class="max-w-7xl mx-auto px-6 py-16 text-center">
+            <div class="bg-gradient-to-r from-blue-600 to-purple-700 text-white p-12 rounded-3xl shadow-xl animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                    Listo para tomar el control de tus finanzas?
+                </h2>
+                <p class="text-xl md:text-2xl opacity-90 mb-10 max-w-3xl mx-auto">
+                    Únete a miles de usuarios que ya están simplificando su contabilidad con Contabilito.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="/register" class="bg-white text-blue-600 font-bold py-3.5 px-8 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 text-lg flex items-center">
+                        <i data-lucide="rocket" class="w-6 h-6 mr-3"></i> Empieza Ahora
+                    </a>
+                    <a href="mailto:soporte@contabilito.com" class="bg-transparent border-2 border-white text-white font-semibold py-3.5 px-8 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 text-lg flex items-center">
+                        <i data-lucide="mail" class="w-6 h-6 mr-3"></i> Contáctanos
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-8 text-center border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
+        <p>&copy; {new Date().getFullYear()} {appName}. Todos los derechos reservados.</p>
+        <p class="mt-2 text-sm">Hecho con <i data-lucide="heart" class="inline-block w-4 h-4 text-red-500"></i> y Astro.</p>
+    </footer>
+
+    <style is:inline>
+        
+        /* Animaciones para el Hero Section (blobs) */
+        @keyframes blob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite cubic-bezier(0.6, 0.01, 0.3, 0.9);
+        }      
+
+        /* Animaciones de entrada (fade-in-up) */
+
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animaciones de entrada (fade-in-down) */ 
+
+        .animate-fade-in-down {
+            animation: fade-in-down 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fade-in-down {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+        /* Retrasos para animaciones */
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-300 { animation-delay: 0.3s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-500 { animation-delay: 0.5s; }
+        .animation-delay-600 { animation-delay: 0.6s; }
+        .animation-delay-900 { animation-delay: 0.9s; }
+        .animation-delay-1000 { animation-delay: 1s; }
+        .animation-delay-1500 { animation-delay: 1.5s; }
+        .animation-delay-1700 { animation-delay: 1.7s; }
+        .animation-delay-1900 { animation-delay: 1.9s; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-2100 { animation-delay: 2.1s; }
+
+        /* Estilos para el modo oscuro en esta página (ejemplos) */
+        
+        html.dark .from-blue-50 {
+            --tw-gradient-from: #1f2937;
+        }
+        html.dark .to-purple-50 {
+            --tw-gradient-to: #111827; 
+        }
+        html.dark .bg-orange-50 {
+            background-color: #4a2d1a;
+        }
+        html.dark .border-orange-200 {
+            border-color: #7c2d12;
+        }
+        html.dark .text-orange-800 {
+            color: #fdba74;
+        }
+        html.dark .text-orange-700 {
+            color: #fb923c;
+        }
+    </style>
+
+    <script is:inline>
+        // Inicializar iconos de Lucide después de que el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Lógica para el acordeón de Preguntas Frecuentes (FAQ)
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(button => {
+                button.addEventListener('click', () => {
+                    const faqItem = button.closest('.faq-item');
+                    const answer = faqItem.querySelector('.faq-answer');
+                    const icon = button.querySelector('i[data-lucide="chevron-down"]');
+
+                    // Cierra otras preguntas abiertas
+                    document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                        if (otherAnswer !== answer && !otherAnswer.classList.contains('hidden')) {
+                            otherAnswer.classList.add('hidden');
+                            otherAnswer.closest('.faq-item').querySelector('i[data-lucide="chevron-down"]').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Alterna la visibilidad de la respuesta y rota el icono
+                    answer.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+        });
+    </script>
+</BaseLayout>

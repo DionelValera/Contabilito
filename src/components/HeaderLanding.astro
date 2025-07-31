@@ -1,0 +1,26 @@
+---
+// import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  appName: string;
+}
+
+const { appName } = Astro.props;
+---
+<header class="fixed top-0 left-0 right-0 bg-gray-100 dark:bg-gray-800 shadow-xl py-4 px-6 sm:px-10 flex justify-between items-center z-50 transition-all duration-900">
+    <div class="flex items-center">
+        <a href="/" class="text-3xl font-extrabold text-gray-700 dark:text-gray-100 tracking-tight hover:scale-108 transition-transform duration-400">
+            {appName}
+        </a>
+    </div>
+
+    <nav class="flex items-center space-x-6">
+        <!-- <ThemeToggle />  -->
+        <a href="/login" class="text-gray-700 dark:text-gray-300 font-medium hover:text-indigo-600 dark:hover:text-indigo-600 hover:scale-115 transition-all duration-400">
+            Iniciar Sesión
+        </a>
+        <a href="/register" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-2.5 px-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-400 transform hover:scale-108">
+            Registrarse
+        </a>
+    </nav>
+</header>

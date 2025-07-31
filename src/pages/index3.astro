@@ -1,0 +1,606 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeaderLanding from '../components/HeaderLanding.astro'; // Importa el header de la landing
+
+const appName = "Contabilito"; // Nombre de tu aplicación
+---
+<BaseLayout title="Bienvenido">
+    <HeaderLanding appName={appName} />
+
+    <main class="flex-grow pt-[80px] pb-16 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 overflow-hidden">
+        <!-- Hero Section -->
+        <section class="relative max-w-7xl mx-auto px-6 py-20 text-center z-10 overflow-hidden">
+            <!-- Fondo animado de la sección Hero: Ondas sutiles -->
+            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div class="wave wave1 bg-indigo-200 dark:bg-indigo-900 opacity-30 dark:opacity-20"></div>
+                <div class="wave wave2 bg-purple-200 dark:bg-purple-900 opacity-30 dark:opacity-20"></div>
+                <div class="wave wave3 bg-cyan-200 dark:bg-cyan-900 opacity-30 dark:opacity-20"></div>
+            </div>
+
+            <div class="relative z-10 inline-block mb-8">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-gray-100 leading-tight animate-fade-in-up-hero">
+                    Tu Futuro Financiero,<br class="hidden sm:inline" /> Desbloqueado.
+                </h1>
+            </div>
+            
+            <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mt-4 max-w-3xl mx-auto animate-fade-in-up-hero animation-delay-300">
+                Visualiza, controla y optimiza tus finanzas con <span class="font-semibold text-indigo-600 dark:text-indigo-400">{appName}</span>.
+                Una experiencia sin precedentes.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-up-hero animation-delay-600">
+                <a href="/register" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-full shadow-2xl hover:shadow-indigo-500/50 transition-all duration-300 transform hover:-translate-y-1 text-lg flex items-center">
+                    <i data-lucide="sparkles" class="w-6 h-6 mr-3"></i> Empieza Tu Viaje
+                </a>
+                <a href="/index3" class="bg-transparent text-indigo-600 dark:text-indigo-300 font-semibold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-lg border-2 border-indigo-300 dark:border-indigo-600 hover:border-indigo-500">
+                    <i data-lucide="log-in" class="w-6 h-6 mr-3"></i> Acceder
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section: Glassmorphism Cards -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                Descubre un nuevo nivel de control
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="feature-card bg-white/20 dark:bg-gray-800/30 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white/30 dark:border-gray-700/50 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-200">
+                    <i data-lucide="line-chart" class="w-20 h-20 mx-auto text-cyan-500 dark:text-cyan-400 mb-6 drop-shadow-lg"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Análisis Predictivo</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        No solo veas el pasado, predice tu futuro financiero con herramientas inteligentes.
+                    </p>
+                </div>
+                <div class="feature-card bg-white/20 dark:bg-gray-800/30 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white/30 dark:border-gray-700/50 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-400">
+                    <i data-lucide="shield-check" class="w-20 h-20 mx-auto text-rose-500 dark:text-rose-400 mb-6 drop-shadow-lg"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Seguridad Inquebrantable</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Tus datos financieros protegidos con los más altos estándares de encriptación.
+                    </p>
+                </div>
+                <div class="feature-card bg-white/20 dark:bg-gray-800/30 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white/30 dark:border-gray-700/50 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-600">
+                    <i data-lucide="cloud" class="w-20 h-20 mx-auto text-yellow-500 dark:text-yellow-400 mb-6 drop-shadow-lg"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Acceso Global</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Accede a tus finanzas desde cualquier dispositivo, en cualquier lugar del mundo.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 1: Seamless Workflow (How it works - more visual) -->
+        <section class="relative max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-16 animate-fade-in-up">
+                Flujo de Trabajo Sin Esfuerzo
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center text-center animate-fade-in-up animation-delay-200">
+                    <div class="relative w-24 h-24 flex items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-800 shadow-xl mb-6">
+                        <i data-lucide="user-plus" class="w-12 h-12 text-indigo-600 dark:text-indigo-400"></i>
+                        <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-indigo-600 text-white flex items-center justify-center rounded-full text-lg font-bold shadow-lg border-2 border-white dark:border-gray-800">1</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Registro Instantáneo</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Comienza en segundos. Solo unos clics y estarás listo para despegar.
+                    </p>
+                </div>
+                <!-- Connector Line 1 -->
+                <div class="hidden md:flex items-center justify-center h-full relative">
+                    <div class="absolute w-full h-1 bg-gradient-to-r from-indigo-300 to-cyan-300 dark:from-indigo-700 dark:to-cyan-700 rounded-full animate-draw-line"></div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 text-indigo-600 dark:text-indigo-400 z-10 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md"></i>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center text-center animate-fade-in-up animation-delay-400">
+                    <div class="relative w-24 h-24 flex items-center justify-center rounded-full bg-cyan-100 dark:bg-cyan-800 shadow-xl mb-6">
+                        <i data-lucide="credit-card" class="w-12 h-12 text-cyan-600 dark:text-cyan-400"></i>
+                        <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-cyan-600 text-white flex items-center justify-center rounded-full text-lg font-bold shadow-lg border-2 border-white dark:border-gray-800">2</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Conecta tus Cuentas</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Vincula tus cuentas bancarias de forma segura para una sincronización automática.
+                    </p>
+                </div>
+                <!-- Connector Line 2 -->
+                <div class="hidden md:flex items-center justify-center h-full relative">
+                    <div class="absolute w-full h-1 bg-gradient-to-r from-cyan-300 to-rose-300 dark:from-cyan-700 dark:to-rose-700 rounded-full animate-draw-line animation-delay-200"></div>
+                    <i data-lucide="arrow-right" class="w-8 h-8 text-cyan-600 dark:text-cyan-400 z-10 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md"></i>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center text-center animate-fade-in-up animation-delay-600">
+                    <div class="relative w-24 h-24 flex items-center justify-center rounded-full bg-rose-100 dark:bg-rose-800 shadow-xl mb-6">
+                        <i data-lucide="trending-up" class="w-12 h-12 text-rose-600 dark:text-rose-400"></i>
+                        <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-rose-600 text-white flex items-center justify-center rounded-full text-lg font-bold shadow-lg border-2 border-white dark:border-gray-800">3</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Reportes Inteligentes</h3>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Obtén insights accionables y proyecciones para un futuro financiero brillante.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 2: Dynamic Testimonials Carousel -->
+        <section class="relative max-w-7xl mx-auto px-6 py-16 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-xl overflow-hidden">
+             <!-- Fondo de partículas sutil -->
+            <div class="absolute inset-0 z-0 pointer-events-none particle-background"></div>
+
+            <h2 class="relative z-10 text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                Voces que Inspiran Confianza
+            </h2>
+            <div class="relative z-10 testimonial-carousel">
+                <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+                    <!-- Testimonial 1 -->
+                    <div class="carousel-item flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                        <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 flex flex-col items-center text-center h-full">
+                            <img src="https://placehold.co/80x80/6366F1/FFFFFF?text=JD" alt="Avatar de usuario" class="w-20 h-20 rounded-full mb-4 border-4 border-indigo-400 dark:border-indigo-600 shadow-md">
+                            <p class="text-lg text-gray-800 dark:text-gray-200 italic mb-4">
+                                "Contabilito ha transformado la forma en que gestiono mis gastos. ¡Es increíblemente intuitivo y me ahorra muchísimo tiempo!"
+                            </p>
+                            <p class="font-semibold text-indigo-600 dark:text-indigo-400">- Juan D., Emprendedor</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="carousel-item flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                        <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 flex flex-col items-center text-center h-full">
+                            <img src="https://placehold.co/80x80/10B981/FFFFFF?text=AM" alt="Avatar de usuario" class="w-20 h-20 rounded-full mb-4 border-4 border-cyan-400 dark:border-cyan-600 shadow-md">
+                            <p class="text-lg text-gray-800 dark:text-gray-200 italic mb-4">
+                                "Por fin una herramienta que me permite ver mis finanzas claras. Los reportes son fantásticos y muy fáciles de entender."
+                            </p>
+                            <p class="font-semibold text-cyan-600 dark:text-cyan-400">- Ana M., Freelancer</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="carousel-item flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                        <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 flex flex-col items-center text-center h-full">
+                            <img src="https://placehold.co/80x80/F472B6/FFFFFF?text=CR" alt="Avatar de usuario" class="w-20 h-20 rounded-full mb-4 border-4 border-rose-400 dark:border-rose-600 shadow-md">
+                            <p class="text-lg text-gray-800 dark:text-gray-200 italic mb-4">
+                                "La gestión multi-empresa es un salvavidas. Contabilito es la única solución que realmente funciona para mis múltiples proyectos."
+                            </p>
+                            <p class="font-semibold text-rose-600 dark:text-rose-400">- Carlos R., Consultor</p>
+                        </div>
+                    </div>
+                     <!-- Testimonial 4 (para que el carousel pueda moverse) -->
+                    <div class="carousel-item flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4">
+                        <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 flex flex-col items-center text-center h-full">
+                            <img src="https://placehold.co/80x80/60A5FA/FFFFFF?text=LP" alt="Avatar de usuario" class="w-20 h-20 rounded-full mb-4 border-4 border-blue-400 dark:border-blue-600 shadow-md">
+                            <p class="text-lg text-gray-800 dark:text-gray-200 italic mb-4">
+                                "La interfaz es tan limpia y fácil de usar. ¡Nunca pensé que gestionar finanzas podría ser tan agradable!"
+                            </p>
+                            <p class="font-semibold text-blue-600 dark:text-blue-400">- Laura P., Dueña de Negocio</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-button prev absolute top-1/2 left-0 transform -translate-y-1/2 bg-white/70 dark:bg-gray-700/70 p-3 rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-600 transition-colors duration-200 z-20 ml-4">
+                    <i data-lucide="chevron-left" class="w-6 h-6 text-gray-800 dark:text-gray-200"></i>
+                </button>
+                <button class="carousel-button next absolute top-1/2 right-0 transform -translate-y-1/2 bg-white/70 dark:bg-gray-700/70 p-3 rounded-full shadow-lg hover:bg-white dark:hover:bg-gray-600 transition-colors duration-200 z-20 mr-4">
+                    <i data-lucide="chevron-right" class="w-6 h-6 text-gray-800 dark:text-gray-200"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- New Section 3: Pricing/Plans (Mock - More Modern) -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                Elige tu camino financiero
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+                <!-- Plan Básico -->
+                <div class="pricing-card bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-200 dark:border-gray-700 text-center flex flex-col items-center transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-200">
+                    <i data-lucide="sparkles" class="w-16 h-16 text-gray-500 dark:text-gray-400 mb-6"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Básico</h3>
+                    <p class="text-6xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-4">$0<span class="text-xl text-gray-500 dark:text-gray-400">/mes</span></p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-left space-y-3 mb-8 w-full">
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> 1 Empresa</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> Transacciones ilimitadas</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> Reportes esenciales</li>
+                        <li class="flex items-center text-gray-500 dark:text-gray-400"><i data-lucide="x-circle" class="w-6 h-6 mr-2 text-red-500"></i> Soporte prioritario</li>
+                        <li class="flex items-center text-gray-500 dark:text-gray-400"><i data-lucide="x-circle" class="w-6 h-6 mr-2 text-red-500"></i> Integraciones avanzadas</li>
+                    </ul>
+                    <a href="/register" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-6 rounded-lg shadow-md hover:shadow-lg transition-colors duration-200">
+                        Empieza Gratis
+                    </a>
+                </div>
+
+                <!-- Plan Pro (Destacado - Más Elevado) -->
+                <div class="pricing-card bg-gradient-to-br from-indigo-600 to-purple-700 p-10 rounded-3xl shadow-2xl border-4 border-yellow-400 text-white text-center flex flex-col items-center transform scale-[1.08] hover:scale-[1.1] transition-transform duration-300 animate-fade-in-up animation-delay-400 relative z-10">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-indigo-900 text-sm font-bold px-4 py-1.5 rounded-full shadow-md rotate-3">
+                        Popular
+                    </div>
+                    <i data-lucide="crown" class="w-20 h-20 text-yellow-300 mb-6 drop-shadow-lg"></i>
+                    <h3 class="text-4xl font-bold mb-2">Pro</h3>
+                    <p class="text-6xl font-extrabold mb-4">$19<span class="text-xl opacity-80">/mes</span></p>
+                    <ul class="text-white text-left space-y-3 mb-8 opacity-90 w-full">
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-yellow-300"></i> Empresas ilimitadas</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-yellow-300"></i> Todas las características básicas</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-yellow-300"></i> Reportes avanzados</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-yellow-300"></i> Soporte prioritario</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-yellow-300"></i> Integraciones clave</li>
+                    </ul>
+                    <a href="/register" class="w-full bg-white text-indigo-600 font-bold py-3.5 px-6 rounded-lg shadow-md hover:shadow-lg transition-colors duration-200">
+                        Comprar Plan Pro
+                    </a>
+                </div>
+
+                <!-- Plan Empresarial -->
+                <div class="pricing-card bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl border border-gray-200 dark:border-gray-700 text-center flex flex-col items-center transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-600">
+                    <i data-lucide="building-2" class="w-16 h-16 text-teal-600 dark:text-teal-400 mb-6"></i>
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Empresarial</h3>
+                    <p class="text-6xl font-extrabold text-teal-600 dark:text-teal-400 mb-4">¡Contactar!</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-left space-y-3 mb-8 w-full">
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> Todo lo de Pro</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> Soluciones personalizadas</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> Integraciones API</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> Gestor de cuenta dedicado</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2 text-green-500"></i> SLAs a medida</li>
+                    </ul>
+                    <a href="mailto:ventas@contabilito.com" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 px-6 rounded-lg shadow-md hover:shadow-lg transition-colors duration-200">
+                        Contáctanos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 4: FAQ (Accordion - More Visual) -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
+                Preguntas Frecuentes
+            </h2>
+            <div class="space-y-6 max-w-4xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 animate-fade-in-up animation-delay-200 overflow-hidden">
+                    <button class="faq-question flex justify-between items-center w-full text-left text-xl font-semibold text-gray-900 dark:text-gray-100 py-2">
+                        <span>¿Cómo Contabilito asegura la privacidad de mis datos?</span>
+                        <i data-lucide="chevron-down" class="w-7 h-7 text-indigo-600 dark:text-indigo-400 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                        En Contabilito, la seguridad y privacidad de tus datos son nuestra máxima prioridad. Implementamos encriptación de extremo a extremo, autenticación robusta y auditorías de seguridad regulares para garantizar que tu información financiera esté siempre protegida. Cumplimos con las normativas de protección de datos más estrictas.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 animate-fade-in-up animation-delay-400 overflow-hidden">
+                    <button class="faq-question flex justify-between items-center w-full text-left text-xl font-semibold text-gray-900 dark:text-gray-100 py-2">
+                        <span>¿Puedo importar datos de otras plataformas?</span>
+                        <i data-lucide="chevron-down" class="w-7 h-7 text-indigo-600 dark:text-indigo-400 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Actualmente, estamos desarrollando una función de importación de datos que te permitirá subir tus transacciones y cuentas desde archivos CSV de otras plataformas financieras. Esta característica estará disponible muy pronto para facilitar aún más tu transición a Contabilito.
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 animate-fade-in-up animation-delay-600 overflow-hidden">
+                    <button class="faq-question flex justify-between items-center w-full text-left text-xl font-semibold text-gray-900 dark:text-gray-100 py-2">
+                        <span>¿Contabilito ofrece soporte al cliente?</span>
+                        <i data-lucide="chevron-down" class="w-7 h-7 text-indigo-600 dark:text-indigo-400 transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                        ¡Sí! Ofrecemos soporte al cliente a través de correo electrónico para todos nuestros usuarios. Para los planes Pro y Empresarial, brindamos soporte prioritario y un gestor de cuenta dedicado para asegurar que siempre tengas la ayuda que necesitas.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section 5: Final Call to Action / Contact - More immersive -->
+        <section class="relative px-6 py-20 text-center overflow-hidden">
+            <!-- Fondo de malla animada -->
+            <div class="absolute inset-0 z-0 pointer-events-none grid-background"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg p-12 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-700 dark:text-white mb-6 leading-tight drop-shadow-lg">
+                    Transforma tu Gestión Financiera Hoy.
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-700 dark:text-white opacity-90 mb-10 max-w-3xl mx-auto">
+                    La claridad financiera que siempre deseaste está a solo un clic de distancia.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="/register" class="bg-yellow-400 hover:bg-yellow-500 text-indigo-900 font-bold py-4 px-10 rounded-full shadow-xl hover:shadow-yellow-500/50 transition-all duration-300 transform hover:-translate-y-1 text-lg flex items-center">
+                        <i data-lucide="rocket" class="w-6 h-6 mr-3"></i> Empieza Gratis Ahora
+                    </a>
+                    <a href="mailto:info@contabilito.com" class="bg-indigo-600 border-2 border-white text-white font-semibold py-4 px-10 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 text-lg flex items-center">
+                        <i data-lucide="mail" class="w-6 h-6 mr-3"></i> Contáctanos
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-8 text-center border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
+        <p>&copy; {new Date().getFullYear()} {appName}. Todos los derechos reservados.</p>
+        <p class="mt-2 text-sm">Hecho con <i data-lucide="heart" class="inline-block w-4 h-4 text-red-500"></i> y Astro.</p>
+    </footer>
+
+    <style is:inline>
+        /* Nuevas animaciones de fondo */
+
+        /* Hero Section Waves */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Altura de la onda */
+            background-repeat: repeat-x;
+            background-size: 1000px 100px; /* Ancho y alto de una repetición de onda */
+            animation: wave-animation 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+        }
+
+        .wave1 {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23e0e7ff" d="M0,70 C200,30 400,110 600,70 C800,30 1000,70 1000,70 L1000,100 L0,100 Z"></path></svg>');
+            animation-delay: 0s;
+            opacity: 0.3;
+        }
+        .dark .wave1 {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%233730a3" d="M0,70 C200,30 400,110 600,70 C800,30 1000,70 1000,70 L1000,100 L0,100 Z"></path></svg>'); /* indigo-900 */
+        }
+
+        .wave2 {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23ede9fe" d="M0,50 C200,90 400,10 600,50 C800,90 1000,50 1000,50 L1000,100 L0,100 Z"></path></svg>');
+            animation-delay: -2s; /* Desfase para diferentes velocidades */
+            opacity: 0.3;
+            height: 120px;
+            background-size: 1100px 120px;
+        }
+        .dark .wave2 {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%234c1d95" d="M0,50 C200,90 400,10 600,50 C800,90 1000,50 1000,50 L1000,100 L0,100 Z"></path></svg>'); /* purple-900 */
+        }
+
+        .wave3 {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23e0f7fa" d="M0,80 C200,40 400,120 600,80 C800,40 1000,80 1000,80 L1000,100 L0,100 Z"></path></svg>');
+            animation-delay: -4s;
+            opacity: 0.3;
+            height: 150px;
+            background-size: 1200px 150px;
+        }
+        .dark .wave3 {
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23083344" d="M0,80 C200,40 400,120 600,80 C800,40 1000,80 1000,80 L1000,100 L0,100 Z"></path></svg>'); /* cyan-900 */
+        }
+
+        @keyframes wave-animation {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1000px; } /* Ajustar según background-size */
+        }
+
+        /* Testimonials Section: Particle Background */
+        .particle-background {
+            background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%),
+                        radial-gradient(circle at 90% 80%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%);
+            animation: subtle-pulse 10s infinite alternate;
+        }
+        html.dark .particle-background {
+             background: radial-gradient(circle at 10% 20%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 50%),
+                         radial-gradient(circle at 90% 80%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 50%);
+        }
+        @keyframes subtle-pulse {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        /* Final CTA Section: Grid Background */
+        .grid-background {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: pan-grid 60s linear infinite;
+        }
+        html.dark .grid-background {
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.1) 1px, transparent 1px);
+        }
+        @keyframes pan-grid {
+            from { background-position: 0 0; }
+            to { background-position: -400px -400px; } /* Mueve el patrón */
+        }
+
+
+        /* Animaciones de entrada (fade-in-up, fade-in-up-hero, draw-line) */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fade-in-up-hero {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+            opacity: 0; /* Start hidden */
+        }
+        .animate-fade-in-up-hero {
+            animation: fade-in-up-hero 1s ease-out forwards;
+            opacity: 0; /* Start hidden */
+        }
+
+        @keyframes draw-line {
+            0% { width: 0; opacity: 0; }
+            50% { width: 100%; opacity: 1; }
+            100% { width: 100%; opacity: 1; }
+        }
+        .animate-draw-line {
+            animation: draw-line 1.5s ease-out forwards;
+            animation-delay: 0.8s; /* Retraso para que aparezca después del paso anterior */
+        }
+
+
+        /* Retrasos para animaciones */
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-300 { animation-delay: 0.3s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-600 { animation-delay: 0.6s; }
+        .animation-delay-900 { animation-delay: 0.9s; }
+        .animation-delay-1200 { animation-delay: 1.2s; }
+        .animation-delay-1500 { animation-delay: 1.5s; }
+
+
+        /* Estilos específicos para el modo oscuro en esta página */
+        html.dark .from-indigo-50 {
+            --tw-gradient-from: #1f2937; /* gray-800 */
+        }
+        html.dark .to-purple-50 {
+            --tw-gradient-to: #111827; /* gray-900 */
+        }
+        html.dark .bg-white\/20 {
+            background-color: rgba(45, 55, 72, 0.3); /* gray-800 con más transparencia */
+        }
+        html.dark .border-white\/30 {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        html.dark .bg-indigo-100 {
+            background-color: #3730a3; /* indigo-800 */
+        }
+        html.dark .bg-cyan-100 {
+            background-color: #0891b2; /* cyan-800 */
+        }
+        html.dark .bg-rose-100 {
+            background-color: #be123c; /* rose-800 */
+        }
+        html.dark .bg-gradient-to-br.from-indigo-100 {
+            --tw-gradient-from: #1f2937; /* gray-800 */
+        }
+        html.dark .to-purple-100 {
+            --tw-gradient-to: #111827; /* gray-900 */
+        }
+        html.dark .bg-white\/10 {
+            background-color: rgba(45, 55, 72, 0.2); /* gray-800 con más transparencia */
+        }
+        html.dark .border-white\/20 {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        html.dark .text-yellow-300 {
+            color: #fde047;
+        }
+        html.dark .text-indigo-900 {
+            color: #e0e7ff;
+        }
+        html.dark .shadow-indigo-500\/50 {
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+        }
+        html.dark .hover\\:shadow-indigo-500\/50:hover {
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.5);
+        }
+
+        /* FAQ Accordion Transitions */
+        .faq-answer.open {
+            max-height: 200px; /* Suficiente para la mayoría de respuestas */
+            opacity: 1;
+            padding-top: 1rem; /* Añadir padding cuando está abierto */
+        }
+    </style>
+
+    <script is:inline>
+        // Inicializar iconos de Lucide después de que el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Lógica para el acordeón de Preguntas Frecuentes (FAQ)
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(button => {
+                button.addEventListener('click', () => {
+                    const faqItem = button.closest('.faq-item');
+                    const answer = faqItem.querySelector('.faq-answer');
+                    const icon = button.querySelector('i[data-lucide="chevron-down"]');
+
+                    // Cierra otras preguntas abiertas
+                    document.querySelectorAll('.faq-answer.open').forEach(otherAnswer => {
+                        if (otherAnswer !== answer) {
+                            otherAnswer.classList.remove('open');
+                            otherAnswer.closest('.faq-item').querySelector('i[data-lucide="chevron-down"]').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Alterna la visibilidad de la respuesta y rota el icono
+                    answer.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // Lógica para el carrusel de Testimonios
+            const carouselTrack = document.querySelector('.testimonial-carousel .carousel-track');
+            const prevButton = document.querySelector('.testimonial-carousel .carousel-button.prev');
+            const nextButton = document.querySelector('.testimonial-carousel .carousel-button.next');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                const itemWidth = carouselTrack.children[0].offsetWidth; // Ancho de un item (incluye padding)
+                const carouselWidth = carouselTrack.offsetWidth; // Ancho del contenedor del carrusel
+                let itemsToShow = 1;
+
+                // Determinar cuántos ítems se muestran por vista
+                if (window.innerWidth >= 1024) { // lg breakpoint
+                    itemsToShow = 3;
+                } else if (window.innerWidth >= 768) { // md breakpoint
+                    itemsToShow = 2;
+                } else { // mobile
+                    itemsToShow = 1;
+                }
+
+                // Calcular el desplazamiento
+                const offset = -currentIndex * (itemWidth / itemsToShow); // Ajuste aquí para mostrar items parciales si es necesario
+                carouselTrack.style.transform = `translateX(${offset}px)`;
+
+                // Ajustar el número de ítems visibles para el cálculo de límites
+                const totalItems = carouselTrack.children.length;
+                const maxIndex = totalItems - itemsToShow;
+
+                // Deshabilitar botones si se llega al límite
+                prevButton.disabled = currentIndex === 0;
+                nextButton.disabled = currentIndex >= maxIndex;
+
+                 // Ocultar/mostrar botones si no hay suficientes elementos para el carrusel
+                if (totalItems <= itemsToShow) {
+                    prevButton.style.display = 'none';
+                    nextButton.style.display = 'none';
+                } else {
+                    prevButton.style.display = 'flex';
+                    nextButton.style.display = 'flex';
+                }
+            }
+
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                const itemWidth = carouselTrack.children[0].offsetWidth;
+                const carouselWidth = carouselTrack.offsetWidth;
+                let itemsToShow = 1;
+                if (window.innerWidth >= 1024) { itemsToShow = 3; }
+                else if (window.innerWidth >= 768) { itemsToShow = 2; }
+
+                const totalItems = carouselTrack.children.length;
+                const maxIndex = totalItems - itemsToShow;
+
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            // Actualizar carrusel al cargar y al redimensionar
+            window.addEventListener('resize', () => {
+                currentIndex = 0; // Reset index on resize to prevent out-of-bounds issues
+                updateCarousel();
+            });
+            updateCarousel(); // Initial call
+        });
+    </script>
+</BaseLayout>

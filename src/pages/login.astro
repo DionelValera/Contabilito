@@ -1,0 +1,212 @@
+---
+// src/pages/login.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeaderLanding from '../components/HeaderLanding.astro';
+
+const appName = "Contabilito"; // Nombre de tu aplicación
+---
+<BaseLayout title="Iniciar Sesión">
+    <HeaderLanding appName={appName} />
+
+    <main class="flex-grow flex items-center justify-center py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden background-dots">
+        
+        <div class="mt-14 relative z-10 w-full max-w-sm p-8 bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 animate-fade-in-up login-form-card">
+            
+            <h1 class="relative z-10 text-3xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-6">
+                Bienvenido de nuevo
+            </h1>
+            <p class="relative z-10 text-center text-gray-700 dark:text-gray-300 mb-8">
+                Ingresa a tu cuenta de Contabilito.
+            </p>
+
+            <form id="login-form" class="relative z-10 space-y-6">
+                <div>
+                    <label for="identifier" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Usuario o Correo Electrónico</label>
+                    <input
+                        type="text"
+                        id="identifier"
+                        name="identifier"
+                        required
+                        autocomplete="username"
+                        class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base"
+                        placeholder="tu_usuario o tu@ejemplo.com"
+                    />
+                </div>
+                <div class="relative">
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        autocomplete="current-password"
+                        class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base pr-10"
+                        placeholder="••••••••"
+                    />
+                    <button type="button" id="toggle-password-visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 dark:text-gray-400 mt-6">
+                        <i data-lucide="eye" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input
+                            id="remember-me"
+                            name="remember-me"
+                            type="checkbox"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700"
+                        />
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">
+                            Recuérdame
+                        </label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="/forgot-password" class="font-medium text-indigo-600 dark:text-indigo-400 hover:underline">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    </div>
+                </div>
+
+                <div id="login-message" class="hidden flex items-center p-3 rounded-md text-sm"></div>
+
+                <button
+                    type="submit"
+                    id="login-button"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 text-lg"
+                >
+                    Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="mt-8 text-center text-gray-700 dark:text-gray-300">
+                ¿No tienes una cuenta? <a href="/register" class="font-medium text-indigo-600 dark:text-indigo-400 hover:underline">Regístrate ahora</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-8 text-center border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
+        <p>&copy; {new Date().getFullYear()} {appName}. Todos los derechos reservados.</p>
+        <p class="mt-2 text-sm">Hecho con <i data-lucide="heart" class="inline-block w-4 h-4 text-red-500"></i> y Astro.</p>
+    </footer>
+
+    <style is:inline>
+        /* Animación de entrada (definido en global.css, solo se usa la clase aquí) */
+        /* Fondo de puntos (definido en global.css, solo se usa la clase aquí) */
+        /* Estilos para los mensajes de feedback (definidos en global.css) */
+        /* Colores específicos para el modo oscuro para asegurar contraste (definidos en global.css) */
+
+        /* Se eliminó la animación de fondo del formulario (.login-form-abstract-bg) */
+    </style>
+
+    <script is:inline>
+        // Inicializar iconos de Lucide después de que el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            const loginForm = document.getElementById('login-form');
+            const loginButton = document.getElementById('login-button');
+            const loginMessageDiv = document.getElementById('login-message');
+            const passwordInput = document.getElementById('password');
+            const togglePasswordVisibilityButton = document.getElementById('toggle-password-visibility');
+
+            /**
+             * Muestra un mensaje de feedback al usuario.
+             * @param {HTMLElement} element El elemento DIV donde se mostrará el mensaje.
+             * @param {string} type 'success' o 'error'.
+             * @param {string} message El texto del mensaje.
+             */
+            function showMessage(element, type, message) {
+                element.classList.remove('hidden', 'message-success', 'message-error');
+                element.innerHTML = ''; // Limpiar iconos anteriores
+                let iconHtml = '';
+                
+                if (type === 'success') {
+                    iconHtml = '<i data-lucide="check-circle" class="h-5 w-5 mr-2"></i>';
+                    element.classList.add('message-success');
+                } else if (type === 'error') {
+                    iconHtml = '<i data-lucide="x-circle" class="h-5 w-5 mr-2"></i>';
+                    element.classList.add('message-error');
+                }
+
+                element.innerHTML = `${iconHtml}<span>${message}</span>`;
+                element.classList.remove('hidden');
+
+                // Re-render Lucide icons if dynamically added
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
+
+            /**
+             * Oculta un mensaje de feedback.
+             * @param {HTMLElement} element El elemento DIV del mensaje.
+             */
+            function hideMessage(element) {
+                element.classList.add('hidden');
+                element.innerHTML = '';
+            }
+
+            // Manejador del envío del formulario de login
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Prevenir el envío por defecto del formulario
+                hideMessage(loginMessageDiv); // Ocultar mensajes anteriores
+
+                loginButton.disabled = true; // Deshabilitar el botón durante el envío
+                loginButton.textContent = 'Iniciando Sesión...'; // Cambiar texto del botón
+
+                const identifier = document.getElementById('identifier').value; // Ahora es 'identifier'
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('remember-me').checked; // Obtener estado de "Recuérdame"
+
+                try {
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ identifier, password, rememberMe }), // Enviar 'identifier'
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        showMessage(loginMessageDiv, 'success', result.message || 'Inicio de sesión exitoso. Redirigiendo...');
+                        // Redirigir al dashboard después de un breve retraso
+                        setTimeout(() => {
+                            window.location.href = '/dashboard'; 
+                        }, 1500);
+                    } else {
+                        showMessage(loginMessageDiv, 'error', result.message || 'Error al iniciar sesión.');
+                    }
+                } catch (error) {
+                    console.error('Error de red al iniciar sesión:', error);
+                    showMessage(loginMessageDiv, 'error', 'Error de red al iniciar sesión. Inténtalo de nuevo.');
+                } finally {
+                    loginButton.disabled = false; // Habilitar el botón
+                    loginButton.textContent = 'Iniciar Sesión'; // Restaurar texto del botón
+                }
+            });
+
+            // Lógica para mostrar/ocultar contraseña
+            if (togglePasswordVisibilityButton && passwordInput) {
+                togglePasswordVisibilityButton.addEventListener('click', () => {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    
+                    // Cambiar el icono
+                    const icon = togglePasswordVisibilityButton.querySelector('i');
+                    if (type === 'password') {
+                        icon.setAttribute('data-lucide', 'eye');
+                    } else {
+                        icon.setAttribute('data-lucide', 'eye-off');
+                    }
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons(); // Re-renderizar el icono
+                    }
+                });
+            }
+        });
+    </script>
+</BaseLayout>

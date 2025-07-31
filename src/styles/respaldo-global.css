@@ -1,0 +1,196 @@
+@import "tailwindcss";
+/* @import "tailwindcss/preflight"; */
+/* @tailwind utilities; */
+
+/* -------------------------------------------------------------------------- */
+/* DEFINICIONES DE KEYFRAMES                         */
+/* -------------------------------------------------------------------------- */
+
+/* Animaciones de entrada generales */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fade-in-up-hero {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de fondo de puntos (del index V3 y ahora login) */
+@keyframes pan-dots {
+    from { background-position: 0 0; }
+    to { background-position: -200px -200px; }
+}
+
+/* Animaciones de fondo de la V1 (Blobs) - Mantenidas si las usas en la landing V1 */
+@keyframes blob {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* Animaciones de fondo de la V2 (Ondas, Partículas Sutiles, Malla) - Mantenidas si las usas en la landing V2 */
+@keyframes wave-animation {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 1000px; }
+}
+@keyframes subtle-pulse {
+    0% { opacity: 0.8; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.02); }
+}
+@keyframes pan-grid { /* También usado en login-illustration-pattern anterior */
+    from { background-position: 0 0; }
+    to { background-position: -400px -400px; }
+}
+
+/* Animaciones de fondo de la V3 (Gradiente Pulsante, Shimmer, Movimiento de Partículas) - Mantenidas si las usas en la landing V3 */
+@keyframes pulse-gradient {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+@keyframes draw-svg-path {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+@keyframes move-particles {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* -------------------------------------------------------------------------- */
+/* ESTILOS GLOBALES BASE                            */
+/* -------------------------------------------------------------------------- */
+
+/* Estilos base para el body en modo oscuro (para asegurar el fondo y texto por defecto) */
+html.dark body {
+    background-color: #1a202c; /* dark gray background */
+    color: #e2e8f0; /* light gray text */
+}
+
+/* Estilos para los mensajes de feedback */
+.message-success {
+    background-color: #d1fae5; /* green-100 */
+    color: #065f46; /* green-700 */
+}
+.message-error {
+    background-color: #fee2e2; /* red-100 */
+    color: #b91c1c; /* red-700 */
+}
+html.dark .message-success {
+    background-color: #10b981; /* green-500 */
+    color: #ecfdf5; /* green-50 */
+}
+html.dark .message-error {
+    background-color: #ef4444; /* red-500 */
+    color: #fef2f2; /* red-50 */
+}
+
+/* Colores específicos para el modo oscuro para asegurar contraste (ejemplos) */
+html.dark .bg-gray-50 { background-color: #1a202c; }
+html.dark .bg-gray-800 { background-color: #2d3748; }
+html.dark .border-gray-200 { border-color: #4a5568; }
+html.dark .text-gray-900 { color: #e2e8f0; }
+html.dark .text-gray-700 { color: #a0aec0; }
+html.dark .text-gray-300 { color: #a0aec0; }
+html.dark .bg-gray-50 { background-color: #2d3748; }
+html.dark .bg-gray-700 { background-color: #4a5568; }
+html.dark .placeholder-gray-400 { color: #718096; }
+html.dark .placeholder-gray-500 { color: #4a5568; }
+html.dark .focus\:ring-indigo-500 { --tw-ring-color: #6366f1; }
+html.dark .focus\:border-indigo-500 { border-color: #6366f1; }
+html.dark .bg-indigo-600 { background-color: #4f46e5; }
+html.dark .hover\:bg-indigo-700:hover { background-color: #4338ca; }
+html.dark .text-indigo-600 { color: #6366f1; }
+html.dark .text-indigo-400 { color: #818cf8; }
+
+/* Colores de acento para la V3 de la landing */
+html.dark .text-amber-400 { color: #fbbf24; }
+html.dark .bg-indigo-700 { background-color: #3730a3; }
+html.dark .hover\:bg-indigo-800:hover { background-color: #312e81; }
+html.dark .text-teal-400 { color: #2dd4bf; }
+html.dark .text-rose-400 { color: #fb7185; }
+html.dark .bg-indigo-100 { background-color: #3730a3; }
+html.dark .bg-cyan-100 { background-color: #0891b2; }
+html.dark .bg-rose-100 { background-color: #be123c; }
+html.dark .from-blue-50 { --tw-gradient-from: #1f2937; }
+html.dark .to-indigo-50 { --tw-gradient-to: #111827; }
+html.dark .bg-gradient-to-br.from-indigo-700 { --tw-gradient-from: #4338ca; }
+html.dark .to-purple-800 { --tw-gradient-to: #5b21b6; }
+html.dark .border-indigo-600\/50 { border-color: rgba(67, 56, 202, 0.5); }
+html.dark .border-purple-700\/50 { border-color: rgba(109, 40, 217, 0.5); }
+html.dark .text-indigo-900 { color: #e0e7ff; }
+
+/* Estilos de las ondas SVG (de la V2 de la landing) */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-repeat: repeat-x;
+    background-size: 1000px 100px;
+    animation: wave-animation 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+}
+.wave1 { animation-delay: 0s; opacity: 0.3; }
+.dark .wave1 { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%233730a3" d="M0,70 C200,30 400,110 600,70 C800,30 1000,70 1000,70 L1000,100 L0,100 Z"></path></svg>'); }
+.wave2 { animation-delay: -2s; opacity: 0.3; height: 120px; background-size: 1100px 120px; }
+.dark .wave2 { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%234c1d95" d="M0,50 C200,90 400,10 600,50 C800,90 1000,50 1000,50 L1000,100 L0,100 Z"></path></svg>'); }
+.wave3 { animation-delay: -4s; opacity: 0.3; height: 150px; background-size: 1200px 150px; }
+.dark .wave3 { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23083344" d="M0,80 C200,40 400,120 600,80 C800,40 1000,80 1000,80 L1000,100 L0,100 Z"></path></svg>'); }
+
+/* Las animaciones de las ondas usan SVG data URIs. Los colores deben ser codificados en HEX.
+   Aquí están los colores para los SVG en modo claro (ejemplo, ajusta si los quieres diferentes):
+   wave1: #e0e7ff (indigo-100)
+   wave2: #ede9fe (purple-100)
+   wave3: #e0f7fa (cyan-100)
+*/
+.wave1 { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23e0e7ff" d="M0,70 C200,30 400,110 600,70 C800,30 1000,70 1000,70 L1000,100 L0,100 Z"></path></svg>'); }
+.wave2 { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23ede9fe" d="M0,50 C200,90 400,10 600,50 C800,90 1000,50 1000,50 L1000,100 L0,100 Z"></path></svg>'); }
+.wave3 { background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23e0f7fa" d="M0,80 C200,40 400,120 600,80 C800,40 1000,80 1000,80 L1000,100 L0,100 Z"></path></svg>'); }
+
+/* Fondo de puntos para el main */
+.background-dots {
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: pan-dots 120s linear infinite;
+}
+html.dark .background-dots {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+}
