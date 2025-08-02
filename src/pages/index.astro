@@ -40,7 +40,7 @@ const appName = "Contabilito";
                     <i data-lucide="sparkles" class="w-6 h-6 mr-3 transition-transform duration-900 group-hover:rotate-90"></i> Empieza Gratis
                 </a>
 
-                <a href="/dashboard/principal" class="bg-transparent text-indigo-700 dark:text-indigo-300 font-semibold py-4 px-10 rounded-full shadow-lg hover:shadow-indigo-500/60 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-lg border-2 border-indigo-300 dark:border-indigo-600 hover:border-indigo-500 flex items-center group">
+                <a href="/login" class="bg-transparent text-indigo-700 dark:text-indigo-300 font-semibold py-4 px-10 rounded-full shadow-lg hover:shadow-indigo-500/60 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 text-lg border-2 border-indigo-300 dark:border-indigo-600 hover:border-indigo-500 flex items-center group">
                     <i data-lucide="log-in" class="w-6 h-6 mr-3 transition-transform duration-700 group-hover:-translate-x-2"></i> Acceder
         
                 </a>
@@ -49,13 +49,13 @@ const appName = "Contabilito";
 
         </section>
 
-        <!-- Features Section: Polished Glassmorphism Cards with subtle glow -->
+        <!-- cartas de funcionalidades con hover -->
         <section class="max-w-7xl mx-auto px-6 py-16 relative z-10">
             <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-12 animate-fade-in-up">
                 Funcionalidades que te impulsan
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="feature-card bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-700/30 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-200 relative overflow-hidden group">
+                <div class="feature-card bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-200 relative overflow-hidden group">
                     <div class="feature-card-glow absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <i data-lucide="bar-chart-2" class="w-20 h-20 mx-auto text-teal-500 dark:text-teal-400 mb-6 drop-shadow-lg relative z-10"></i>
                     <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3 relative z-10">Análisis Profundo</h3>
@@ -63,15 +63,15 @@ const appName = "Contabilito";
                         Obtén reportes detallados y visualizaciones claras para entender cada aspecto de tus finanzas.
                     </p>
                 </div>
-                <div class="feature-card bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-700/30 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-400 relative overflow-hidden group">
+                <div class="feature-card bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-400 relative overflow-hidden group">
                     <div class="feature-card-glow absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <i data-lucide="shield-check" class="w-20 h-20 mx-auto text-amber-500 dark:text-amber-400 mb-6 drop-shadow-lg relative z-10"></i>
+                    <i data-lucide="shield-check" class="w-20 h-20 mx-auto text-yellow-500 dark:text-yellow-400 mb-6 drop-shadow-lg relative z-10"></i>
                     <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3 relative z-10">Seguridad Total</h3>
                     <p class="text-gray-700 dark:text-gray-300 leading-relaxed relative z-10">
-                        Tus datos protegidos con encriptación de grado bancario y las mejores prácticas de seguridad.
+                        Tus datos protegidos con encriptación y las mejores prácticas de seguridad.
                     </p>
                 </div>
-                <div class="feature-card bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/20 dark:border-gray-700/30 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-600 relative overflow-hidden group">
+                <div class="feature-card bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 text-center transform hover:scale-[1.03] transition-transform duration-300 animate-fade-in-up animation-delay-600 relative overflow-hidden group">
                     <div class="feature-card-glow absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <i data-lucide="cloud" class="w-20 h-20 mx-auto text-indigo-500 dark:text-indigo-400 mb-6 drop-shadow-lg relative z-10"></i>
                     <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3 relative z-10">Acceso Universal</h3>
@@ -82,12 +82,13 @@ const appName = "Contabilito";
             </div>
         </section>
 
-        <!-- New Section 1: Workflow with Animated Path -->
+        <!-- pasos de trabajo -->
         <section class="max-w-7xl mx-auto px-6 py-16 relative z-10">
             <h2 class="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-16 animate-fade-in-up">
                 Tu Camino hacia la Libertad Financiera
             </h2>
             <div class="relative flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
+                
                 <!-- Línea de conexión SVG animada (para desktop) -->
                 <svg class="absolute hidden md:block workflow-path" width="100%" height="100%" viewBox="0 0 1000 200" preserveAspectRatio="none">
                     <path d="M 50 100 C 200 20 400 180 500 100 C 600 20 800 180 950 100" fill="none" stroke="url(#gradientPath)" stroke-width="3" stroke-dasharray="0" stroke-dashoffset="0" class="path-animation"></path>
@@ -100,7 +101,7 @@ const appName = "Contabilito";
                     </defs>
                 </svg>
 
-                <!-- Step 1 -->
+                <!-- Paso 1 -->
                 <div class="flex flex-col items-center text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 w-full md:w-1/3 transform hover:scale-[1.02] transition-transform duration-300 animate-fade-in-up animation-delay-200 relative z-10">
                     <div class="relative w-24 h-24 flex items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-800 shadow-xl mb-6">
                         <i data-lucide="user-plus" class="w-12 h-12 text-indigo-600 dark:text-indigo-400"></i>
@@ -138,8 +139,9 @@ const appName = "Contabilito";
             </div>
         </section>
 
-        <!-- New Section 2: Testimonials Carousel with Parallax -->
+        <!-- testimonios de carrousell  -->
         <section class="relative max-w-7xl mx-auto px-6 py-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-xl overflow-hidden" data-parallax-bg="testimonial-parallax-bg">
+           
             <!-- Fondo de partículas sutil con movimiento parallax -->
             <div class="absolute inset-0 z-0 pointer-events-none testimonial-parallax-bg"></div>
 
@@ -350,19 +352,15 @@ const appName = "Contabilito";
         /* Hero Section: Gradiente Radial Pulsante */
         .hero-gradient-pulse {
             background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 50%); /* indigo-500 */
-            animation: pulse-gradient 10s infinite alternate ease-in-out;
-        }
-        html.dark .hero-gradient-pulse {
-            background: radial-gradient(circle at 50% 50%, rgba(129,140,248,0.1) 0%, rgba(129,140,248,0) 50%); /* indigo-400 */
+            animation: pulse-gradient 5s infinite alternate ease-in-out;
         }
         @keyframes pulse-gradient {
-            0% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.3; }
+            0% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.3; }
         }
 
         /* Animaciones para el Hero Section (blobs) */
-
         .animate-blob {
             animation: blob 7s infinite cubic-bezier(0.6, 0.01, 0.3, 0.9);
         }      
@@ -438,8 +436,8 @@ const appName = "Contabilito";
 
         /* Testimonials Section: Parallax de partículas */
         .testimonial-parallax-bg {
-            background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%),
-                        radial-gradient(circle at 90% 80%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%);
+            background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.35) 0%, rgba(255,255,255,0) 50%),
+                        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.35) 0%, rgba(255,255,255,0) 50%);
             animation: subtle-pulse 10s infinite alternate;
             transform: translateZ(-1px) scale(2); /* Efecto parallax */
         }

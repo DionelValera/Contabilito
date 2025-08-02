@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+const { ActivePage, activeCompanyName } = Astro.props;
+---
+<BaseLayout title="Dashboard">
+    <div class="flex flex-grow pt-[60px]">
+        <Header ActivePage={"Dashboard"} activeCompanyName={"Compañía"} />
+        <Sidebar />
+        <main class="flex-grow p-8 ml-48">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 w-full mx-auto transition-colors duration-300">
+                <h1 class="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-6 text-center">
+                    Bienvenido al Dashboard, Usuario!
+                </h1>
+                <p class="text-md text-gray-700 dark:text-gray-300 mb-6 text-center">
+                    Empresa activa: <span class="font-semibold text-blue-700 dark:text-blue-200">Compañía</span>
+                </p>
+
+                <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                    <div class="bg-blue-100 dark:bg-blue-900 p-6 rounded-lg shadow-md text-center transform hover:scale-[1.02] transition-transform duration-200">
+                        <i data-lucide="dollar-sign" class="w-12 h-12 mx-auto text-blue-700 dark:text-blue-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-blue-800 dark:text-blue-200 mb-2">Transacciones Recientes</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Consulta tus últimas operaciones.</p>
+                        <a href="/dashboard/add-transaction" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">Ver Transacciones</a>
+                    </div>
+                    <div class="bg-green-100 dark:bg-green-900 p-6 rounded-lg shadow-md text-center transform hover:scale-[1.02] transition-transform duration-200">
+                        <i data-lucide="bar-chart-2" class="w-12 h-12 mx-auto text-green-700 dark:text-green-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-green-800 dark:text-green-200 mb-2">Estadísticas Clave</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Análisis visual de tus finanzas.</p>
+                        <a href="/dashboard/statistics" class="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">Ver Reportes</a>
+                    </div>
+                    <div class="bg-purple-100 dark:bg-purple-900 p-6 rounded-lg shadow-md text-center transform hover:scale-[1.02] transition-transform duration-200">
+                        <i data-lucide="settings" class="w-12 h-12 mx-auto text-purple-700 dark:text-purple-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-purple-800 dark:text-purple-200 mb-2">Configuración de Cuenta</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Actualiza tu perfil y preferencias.</p>
+                        <a href="/dashboard/settings" class="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">Ir a Configuración</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    // Script para inicializar Lucide Icons en el main content si es necesario
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
