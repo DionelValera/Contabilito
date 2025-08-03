@@ -225,7 +225,7 @@ const appName = "Contabilito";
             const registerForm = document.getElementById('register-form');
             const registerButton = document.getElementById('register-button');
             const registerMessageDiv = document.getElementById('register-message');
-            
+
             const passwordInput = document.getElementById('password');
             const confirmPasswordInput = document.getElementById('confirm-password');
             const togglePasswordVisibilityButton = document.getElementById('toggle-password-visibility');
@@ -241,7 +241,7 @@ const appName = "Contabilito";
                 element.classList.remove('hidden', 'message-success', 'message-error');
                 element.innerHTML = ''; // Limpiar iconos anteriores
                 let iconHtml = '';
-                
+
                 if (type === 'success') {
                     iconHtml = '<i data-lucide="check-circle" class="h-5 w-5 mr-2"></i>';
                     element.classList.add('message-success');
@@ -274,7 +274,7 @@ const appName = "Contabilito";
                     toggleButton.addEventListener('click', () => {
                         const type = inputElement.getAttribute('type') === 'password' ? 'text' : 'password';
                         inputElement.setAttribute('type', type);
-                        
+
                         const icon = toggleButton.querySelector('i');
                         if (type === 'password') {
                             icon.setAttribute('data-lucide', 'eye');
@@ -335,13 +335,13 @@ const appName = "Contabilito";
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ 
-                            firstName, 
-                            lastName, 
-                            username, 
-                            companyName, 
-                            email, 
-                            password, 
+                        body: JSON.stringify({
+                            firstName,
+                            lastName,
+                            username,
+                            companyName,
+                            email,
+                            password,
                             termsAccepted: termsAccepted ? 1 : 0 // Convertir booleano a 1 o 0
                         }),
                     });
@@ -352,7 +352,7 @@ const appName = "Contabilito";
                         showMessage(registerMessageDiv, 'success', result.message || 'Registro exitoso. Redirigiendo al login...');
                         // Redirigir al login después de un breve retraso
                         setTimeout(() => {
-                            window.location.href = '/login'; 
+                            window.location.href = '/login';
                         }, 2000);
                     } else {
                         showMessage(registerMessageDiv, 'error', result.message || 'Error al registrarse.');

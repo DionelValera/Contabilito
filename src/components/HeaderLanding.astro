@@ -1,6 +1,8 @@
 ---
+import { Menu } from '@lucide/astro';
+
 interface Props {
-  appName: string;
+	appName: string;
 }
 
 const { appName } = Astro.props;
@@ -8,23 +10,103 @@ const { appName } = Astro.props;
 
 <header class="fixed top-0 left-0 right-0 bg-white/0 dark:bg-gray-800/50 backdrop-blur-md shadow-lg py-4 px-6 sm:px-10 flex justify-between items-center z-50 transition-all duration-900">
 
-    <div class="flex items-center">
-        <a href="/" class="text-3xl font-extrabold text-gray-700 dark:text-gray-100 tracking-tight hover:scale-108 transition-transform duration-400">
-            {appName}
-        </a>
+	<div class="flex items-center">
 
-    </div>
+		<a href="/"
+			aria-label="Página de inicio"
+			class="text-3xl font-extrabold text-gray-700 dark:text-gray-100 tracking-tight hover:scale-108 transition-transform duration-400">
+			{appName}
+		</a>
+	</div>
 
-    <nav class="flex items-center space-x-6">
+	<!-- Contenedor para los enlaces de navegación en escritorio -->
+	<!-- Oculto en móviles y visible a partir de tamaño md -->
+	<nav class="hidden md:flex items-center space-x-6">
+		<!-- Enlace para iniciar sesión -->
+		<a href="/login"
+			aria-label="Página para iniciar sesión"
+			class="text-gray-700 dark:text-gray-300 font-medium hover:text-indigo-600 dark:hover:text-indigo-600 hover:scale-115 transition-all duration-400">
+			Iniciar Sesión
+		</a>
 
-        <a href="/login" class="text-gray-700 dark:text-gray-300 font-medium hover:text-indigo-600 dark:hover:text-indigo-600 hover:scale-115 transition-all duration-400">
-            Iniciar Sesión
-        </a>
+		<!-- Botón para registrarse -->
+		<a href="/register"
+			aria-label="Página para registrarse"
+			class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-2.5 px-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-400 transform hover:scale-108">
+			Registrarse
+		</a>
+	</nav>
 
-        <a href="/register" class="bg-indigo-700 hover:bg-indigo-800 text-white font-semibold py-2.5 px-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-400 transform hover:scale-108">
-            Registrarse
-        </a>
-
-    </nav>
+	<!-- Botón de menú para dispositivos móviles -->
+	<!-- Visible solo en móviles, oculto en md y superiores -->
+	<div class="md:hidden">
+		<button id="menu-toggle"
+			class="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+			aria-label="Abrir menú de navegación">
+			<!-- Renderizamos el componente de icono 'Menu' directamente -->
+			<Menu size={24} />
+		</button>
+	</div>
 
 </header>
+
+<!-- Menú desplegable para móviles (inicialmente oculto) -->
+<nav id="mobile-menu"
+		class="md:hidden fixed top-18 left-0 right-0 z-40
+			   bg-white/0 dark:bg-gray-800/50 backdrop-blur-md shadow-lg
+			   overflow-hidden transition-[max-height] duration-500 ease-in-out max-h-0">
+	<div class="flex flex-col p-4 space-y-4 text-center">
+		<!-- Enlace para iniciar sesión en el menú móvil -->
+		<a href="/login"
+			aria-label="Página para iniciar sesión"
+			class="text-lg text-gray-700 dark:text-gray-300 font-medium px-20
+				   hover:text-indigo-600 dark:hover:text-indigo-600 transition-colors duration-600">
+			Iniciar Sesión
+		</a>
+
+		<!-- Enlace para registrarse en el menú móvil -->
+		<a href="/register"
+			aria-label="Página para registrarse"
+			class="text-lg bg-indigo-700 hover:bg-indigo-800 text-white font-semibold px-20
+				   py-2.5 px-5 rounded-xl shadow-md transition-all duration-600 transform hover:scale-105">
+			Registrarse
+		</a>
+	</div>
+</nav>
+
+<!-- Lógica para manejar la apertura y cierre del menú móvil -->
+<script>
+	// Obtiene los elementos del DOM.
+	const menuToggle = document.getElementById('menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+
+	// Variable para rastrear el estado del menú.
+	let isMenuOpen = false;
+
+	// Añade un evento de clic al botón del menú.
+	menuToggle?.addEventListener('click', () => {
+		isMenuOpen = !isMenuOpen; // Cambia el estado del menú.
+
+		// Si el menú está abierto, muestra el menú; si está cerrado, lo oculta.
+		if (isMenuOpen) {
+			mobileMenu?.classList.remove('max-h-0');
+			mobileMenu?.classList.add('max-h-screen');
+		} else {
+			mobileMenu?.classList.remove('max-h-screen');
+			mobileMenu?.classList.add('max-h-0');
+		}
+	});
+
+	// Cierra el menú si se hace clic fuera de él.
+	document.addEventListener('click', (event) => {
+		const target = event.target as HTMLElement;
+		if (mobileMenu && menuToggle && !mobileMenu.contains(target) && !menuToggle.contains(target)) {
+			if (isMenuOpen) {
+				isMenuOpen = false;
+				mobileMenu.classList.remove('max-h-screen');
+				mobileMenu.classList.add('max-h-0');
+			}
+		}
+	});
+
+</script>
