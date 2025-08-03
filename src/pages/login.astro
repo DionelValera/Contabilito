@@ -1,16 +1,15 @@
 ---
-// src/pages/login.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeaderLanding from '../components/HeaderLanding.astro';
 
-const appName = "Contabilito"; // Nombre de tu aplicación
+const appName = "Contabilito";
 ---
 <BaseLayout title="Iniciar Sesión">
     <HeaderLanding appName={appName} />
 
-    <main class="flex-grow flex items-center justify-center py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden background-dots">
-        
-        <div class="mt-14 relative z-10 w-full max-w-sm p-8 bg-white/10 dark:bg-gray-800/20 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/30 animate-fade-in-up login-form-card">
+    <main class="flex-grow flex items-center justify-center py-20 bg-gray-50 dark:bg-gray-900 transition-all duration-300 relative grid-background-light">
+
+        <div class="mt-14 relative z-10 w-full max-w-sm p-8 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl drop-shadow-2xl border border-gray-300 dark:border-gray-700 animate-fade-in-up login-form-card">
             
             <h1 class="relative z-10 text-3xl font-extrabold text-center text-gray-900 dark:text-gray-100 mb-6">
                 Bienvenido de nuevo
@@ -20,7 +19,7 @@ const appName = "Contabilito"; // Nombre de tu aplicación
             </p>
 
             <form id="login-form" class="relative z-10 space-y-6">
-                <div>
+                <div class="relative">
                     <label for="identifier" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Usuario o Correo Electrónico</label>
                     <input
                         type="text"
@@ -28,9 +27,12 @@ const appName = "Contabilito"; // Nombre de tu aplicación
                         name="identifier"
                         required
                         autocomplete="username"
-                        class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base"
-                        placeholder="tu_usuario o tu@ejemplo.com"
+                        class="block w-full px-4 py-3 rounded-2xl border border-indigo-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-400 text-base"
+                        placeholder="tu-usuario o tu@correo.com"
                     />
+                    <label class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 dark:text-gray-400 mt-6">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    </label>
                 </div>
                 <div class="relative">
                     <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Contraseña</label>
@@ -40,11 +42,11 @@ const appName = "Contabilito"; // Nombre de tu aplicación
                         name="password"
                         required
                         autocomplete="current-password"
-                        class="block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-200 text-base pr-10"
+                        class="block w-full px-4 py-3 rounded-2xl border border-indigo-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:indigo-500 focus:border-indigo-500 shadow-sm transition-all duration-400 text-base pr-10"
                         placeholder="••••••••"
                     />
                     <button type="button" id="toggle-password-visibility" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 dark:text-gray-400 mt-6">
-                        <i data-lucide="eye" class="w-5 h-5"></i>
+                        <i data-lucide="eye-closed" class="w-5 h-5"></i>
                     </button>
                 </div>
 
@@ -72,7 +74,7 @@ const appName = "Contabilito"; // Nombre de tu aplicación
                 <button
                     type="submit"
                     id="login-button"
-                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 text-lg"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-400 transform hover:scale-105 hover:-translate-y-0.5 text-lg"
                 >
                     Iniciar Sesión
                 </button>
@@ -90,12 +92,73 @@ const appName = "Contabilito"; // Nombre de tu aplicación
     </footer>
 
     <style is:inline>
-        /* Animación de entrada (definido en global.css, solo se usa la clase aquí) */
-        /* Fondo de puntos (definido en global.css, solo se usa la clase aquí) */
-        /* Estilos para los mensajes de feedback (definidos en global.css) */
-        /* Colores específicos para el modo oscuro para asegurar contraste (definidos en global.css) */
+    /*Grid Background */
+    html.dark .grid-background {
+        background-image:
+        linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: pan-grid 60s linear infinite;
+    }
+    @keyframes pan-grid {
+        from { background-position: 0 0; }
+        to { background-position: -400px -400px; } /* Mueve el patrón */
+    }
 
-        /* Se eliminó la animación de fondo del formulario (.login-form-abstract-bg) */
+    /*Grid Background light */
+    .grid-background-light {
+        background-image:
+        linear-gradient(to right, rgba(0,0,0,0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.2) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: pan-grid 60s linear infinite;
+    }
+    @keyframes pan-grid {
+        from { background-position: 0 0; }
+        to { background-position: -400px -400px; } /* Mueve el patrón */
+    }
+
+/*     fade-in-up animation */
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .message-success {
+        background-color: #d1fae5; /* green-100 */
+        color: #065f46; /* green-700 */
+    }
+    .message-error {
+        background-color: #fee2e2; /* red-100 */
+        color: #b91c1c; /* red-700 */
+    }
+
+    /* Retrasos para animaciones */
+    .animation-delay-200 { animation-delay: 0.2s; }
+    .animation-delay-300 { animation-delay: 0.3s; }
+    .animation-delay-400 { animation-delay: 0.4s; }
+    .animation-delay-500 { animation-delay: 0.5s; }
+    .animation-delay-600 { animation-delay: 0.6s; }
+    .animation-delay-900 { animation-delay: 0.9s; }
+    .animation-delay-1000 { animation-delay: 1s; }
+    .animation-delay-1200 { animation-delay: 1.2s; }
+    .animation-delay-1500 { animation-delay: 1.5s; }
+    .animation-delay-1700 { animation-delay: 1.7s; }
+    .animation-delay-1900 { animation-delay: 1.9s; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-2100 { animation-delay: 2.1s; }
+
     </style>
 
     <script is:inline>
