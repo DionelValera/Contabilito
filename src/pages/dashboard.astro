@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Dashboard">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+
+        <header class="p-4 bg-white dark:bg-gray-800 shadow-sm flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="/logo.svg" alt="Logo de Contabilito" class="w-8 h-8"/>
+                <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100">Contabilito</h2>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <input type="text" placeholder="Buscar..." class="p-2 pl-10 rounded-full border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100"/>
+                    <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0m6 0H9"></path></svg>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <div id="user-initials" class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">
+                        <span></span>
+                    </div>
+                    <div>
+                        <p id="user-name" class="text-sm font-semibold text-gray-900 dark:text-gray-100"></p>
+                        <p id="company-name" class="text-xs text-gray-500 dark:text-gray-400">Cargando...</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto p-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-6">
+                Mi Dashboard
+            </h1>
+
+            <section id="dashboard-summary" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Presupuesto</p>
+                    <h3 id="budget-amount" class="text-3xl font-bold text-green-600 dark:text-green-400 mt-2">Cargando...</h3>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Saldo de Cuentas</p>
+                    <h3 id="total-balance" class="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">Cargando...</h3>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Inversiones</p>
+                    <h3 id="investments-amount" class="text-3xl font-bold text-purple-600 dark:text-purple-400 mt-2">Cargando...</h3>
+                </div>
+            </section>
+
+            <section class="mt-8">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Últimas Transacciones</h2>
+                <div id="transactions-list" class="space-y-4">
+                    </div>
+            </section>
+
+        </main>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const dashboardSummary = document.getElementById('dashboard-summary');
+        const transactionsList = document.getElementById('transactions-list');
+
+        // Función para formatear números como moneda
+        const formatter = new Intl.NumberFormat('es-VE', {
+            style: 'currency',
+            currency: 'VES', // o USD si prefieres, aunque puse EUR en los placeholders
+            minimumFractionDigits: 2,
+        });
+
+        // 1. Mostrar información del usuario en el header
+        if (user) {
+            const userNameElement = document.getElementById('user-name');
+            if (userNameElement) userNameElement.textContent = `${user.first_name} ${user.last_name}`;
+
+            const userInitialsElement = document.getElementById('user-initials');
+            if (userInitialsElement) {
+                const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`.toUpperCase();
+                userInitialsElement.querySelector('span').textContent = initials;
+            }
+        } else {
+            window.location.href = '/login';
+            return;
+        }
+
+        // 2. Obtener y mostrar datos del dashboard
+        if (user.company_id) {
+            const companyNameElement = document.getElementById('company-name');
+            if (companyNameElement) companyNameElement.textContent = `ID: ${user.company_id}`;
+
+            try {
+                const response = await fetch(`http://localhost:3000/dashboard-data/${user.company_id}`);
+                const { data } = await response.json();
+
+                if (response.ok) {
+                    document.getElementById('total-balance').textContent = formatter.format(data.totalBalance);
+                    document.getElementById('budget-amount').textContent = formatter.format(data.budget);
+                    document.getElementById('investments-amount').textContent = formatter.format(data.investments);
+
+                    // Renderizar las transacciones
+                    transactionsList.innerHTML = ''; // Limpiar el contenido anterior
+                    if (data.transactions.length > 0) {
+                        data.transactions.forEach(tx => {
+                            const transactionElement = document.createElement('div');
+                            const typeColor = tx.type === 'ingreso' ? 'text-green-600' : 'text-red-600';
+                            const typeSign = tx.type === 'ingreso' ? '+' : '-';
+                            transactionElement.className = `p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex justify-between items-center`;
+                            transactionElement.innerHTML = `
+                                <div>
+                                    <p class="font-semibold text-gray-900 dark:text-gray-100">${tx.description}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">${new Date(tx.transaction_date).toLocaleDateString()}</p>
+                                </div>
+                                <span class="font-bold ${typeColor}">${typeSign} ${formatter.format(tx.amount)}</span>
+                            `;
+                            transactionsList.appendChild(transactionElement);
+                        });
+                    } else {
+                        transactionsList.innerHTML = `<p class="text-gray-500 dark:text-gray-400 text-center">No hay transacciones recientes.</p>`;
+                    }
+
+                } else {
+                    dashboardSummary.innerHTML = `<p class="text-red-500 text-center col-span-3">No se pudieron cargar los datos del dashboard.</p>`;
+                    transactionsList.innerHTML = `<p class="text-red-500 text-center">No se pudieron cargar las transacciones.</p>`;
+                }
+            } catch (error) {
+                console.error('Error al obtener los datos del dashboard:', error);
+                dashboardSummary.innerHTML = `<p class="text-red-500 text-center col-span-3">Error de conexión con el servidor.</p>`;
+                transactionsList.innerHTML = `<p class="text-red-500 text-center">Error de conexión con el servidor.</p>`;
+            }
+        } else {
+             dashboardSummary.innerHTML = `<p class="text-gray-500 text-center col-span-3">Este usuario no está asociado a una compañía.</p>`;
+             transactionsList.innerHTML = `<p class="text-gray-500 text-center">No hay transacciones que mostrar.</p>`;
+        }
+    });
+</script>
