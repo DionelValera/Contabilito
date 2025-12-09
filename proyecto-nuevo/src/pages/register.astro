@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import HeaderLanding from '../components/HeaderLanding.astro';
 import { User, Mail, Lock, Eye, Building2, Heart, CircleCheck, CircleX } from '@lucide/astro';
 
 const appName = "Contabilito";
 ---
-<BaseLayout title="Regístrate">
+<Layout title="Regístrate">
     <HeaderLanding appName={appName} />
 
     <main class="flex-grow flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-all duration-400 relative grid-background-light">
@@ -386,4 +386,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-</BaseLayout>
+</Layout>

@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import HeaderLanding from '../components/HeaderLanding.astro';
 import {Mail, Eye, EyeOff, Heart, CircleCheck, CircleX } from '@lucide/astro';
 export const prerender = false;
 
 const appName = "Contabilito";
 ---
-<BaseLayout title="Iniciar Sesión">
+<Layout title="Iniciar Sesión">
     <HeaderLanding appName={appName} />
 
     <main class="flex-grow flex items-center justify-center py-20 bg-gray-50 dark:bg-gray-900 transition-all duration-300 relative grid-background-light">
@@ -263,4 +263,4 @@ const appName = "Contabilito";
         }
     });
 </script>
-</BaseLayout>
+</Layout>
