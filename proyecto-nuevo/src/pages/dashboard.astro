@@ -1,141 +1,480 @@
 ---
-import BaseLayout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/Layout.astro";
+import {
+    LayoutDashboard,
+    Wallet,
+    PieChart,
+    ArrowUpRight,
+    ArrowDownRight,
+    CreditCard,
+    Bell,
+    User,
+    LogOut,
+    Search,
+    TrendingUp,
+    Activity,
+} from "@lucide/astro";
+
+const currentPath = Astro.url.pathname;
+const appName = "Contabilito";
 ---
+
 <BaseLayout title="Dashboard">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-
-        <header class="p-4 bg-white dark:bg-gray-800 shadow-sm flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <img src="/logo.svg" alt="Logo de Contabilito" class="w-8 h-8"/>
-                <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100">Contabilito</h2>
-            </div>
-            <div class="flex items-center space-x-4">
-                <div class="relative">
-                    <input type="text" placeholder="Buscar..." class="p-2 pl-10 rounded-full border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100"/>
-                    <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    <div
+        class="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden font-sans"
+    >
+        <!-- Sidebar -->
+        <aside
+            class="hidden md:flex flex-col w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300"
+        >
+            <div
+                class="flex items-center justify-center h-20 border-b border-gray-100 dark:border-gray-700"
+            >
+                <div class="flex items-center gap-3">
+                    <div class="bg-indigo-600 p-2 rounded-xl">
+                        <Wallet class="w-6 h-6 text-white" />
+                    </div>
+                    <span
+                        class="text-2xl font-bold text-gray-800 dark:text-white tracking-tight"
+                        >{appName}</span
+                    >
                 </div>
-                <button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300">
-                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0m6 0H9"></path></svg>
+            </div>
+
+            <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                <a
+                    href="#"
+                    class="flex items-center px-4 py-3 text-indigo-600 bg-indigo-50 dark:bg-gray-700/50 dark:text-indigo-400 rounded-xl transition-colors group"
+                >
+                    <LayoutDashboard class="w-5 h-5 mr-3" />
+                    <span class="font-medium">Resumen</span>
+                </a>
+                <a
+                    href="#"
+                    class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition-colors group"
+                >
+                    <CreditCard
+                        class="w-5 h-5 mr-3 transition-transform group-hover:scale-110"
+                    />
+                    <span class="font-medium">Transacciones</span>
+                </a>
+                <a
+                    href="#"
+                    class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition-colors group"
+                >
+                    <PieChart
+                        class="w-5 h-5 mr-3 transition-transform group-hover:scale-110"
+                    />
+                    <span class="font-medium">Presupuesto</span>
+                </a>
+                <a
+                    href="#"
+                    class="flex items-center px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition-colors group"
+                >
+                    <TrendingUp
+                        class="w-5 h-5 mr-3 transition-transform group-hover:scale-110"
+                    />
+                    <span class="font-medium">Inversiones</span>
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-gray-100 dark:border-gray-700">
+                <button
+                    id="logout-btn"
+                    class="flex items-center w-full px-4 py-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-xl transition-colors"
+                >
+                    <LogOut class="w-5 h-5 mr-3" />
+                    <span class="font-medium">Cerrar Sesión</span>
                 </button>
-                <div class="flex items-center space-x-2">
-                    <div id="user-initials" class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">
-                        <span></span>
-                    </div>
-                    <div>
-                        <p id="user-name" class="text-sm font-semibold text-gray-900 dark:text-gray-100"></p>
-                        <p id="company-name" class="text-xs text-gray-500 dark:text-gray-400">Cargando...</p>
-                    </div>
-                </div>
             </div>
-        </header>
+        </aside>
 
-        <main class="container mx-auto p-8">
-            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-6">
-                Mi Dashboard
-            </h1>
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden relative">
+            <!-- Header -->
+            <header
+                class="flex items-center justify-between px-8 py-5 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md sticky top-0 z-20 border-b border-gray-200 dark:border-gray-700"
+            >
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
+                    Dashboard
+                </h1>
 
-            <section id="dashboard-summary" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Presupuesto</p>
-                    <h3 id="budget-amount" class="text-3xl font-bold text-green-600 dark:text-green-400 mt-2">Cargando...</h3>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Saldo de Cuentas</p>
-                    <h3 id="total-balance" class="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-2">Cargando...</h3>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700">
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Inversiones</p>
-                    <h3 id="investments-amount" class="text-3xl font-bold text-purple-600 dark:text-purple-400 mt-2">Cargando...</h3>
-                </div>
-            </section>
-
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Últimas Transacciones</h2>
-                <div id="transactions-list" class="space-y-4">
+                <div class="flex items-center gap-6">
+                    <div class="relative hidden md:block">
+                        <Search
+                            class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Buscar..."
+                            class="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 text-sm w-64 transition-all"
+                        />
                     </div>
-            </section>
 
-        </main>
+                    <button
+                        class="relative p-2 text-gray-500 hover:text-indigo-600 transition-colors"
+                    >
+                        <Bell class="w-6 h-6" />
+                        <span
+                            class="absolute top-1 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-gray-800"
+                        ></span>
+                    </button>
+
+                    <div
+                        class="flex items-center gap-3 pl-6 border-l border-gray-200 dark:border-gray-600"
+                    >
+                        <div class="text-right hidden md:block">
+                            <p
+                                id="header-user-name"
+                                class="text-sm font-bold text-gray-800 dark:text-white leading-none"
+                            >
+                                Cargando...
+                            </p>
+                            <p class="text-xs text-gray-500 mt-1">Admin</p>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg"
+                            id="user-avatar"
+                        >
+                            U
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <main class="flex-1 overflow-y-auto p-8 scroll-smooth">
+                <!-- Welcome Banner -->
+                <div
+                    class="mb-10 p-8 rounded-3xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xl relative overflow-hidden"
+                >
+                    <div class="relative z-10">
+                        <h2 class="text-3xl font-bold mb-2">
+                            ¡Hola, <span id="welcome-user-name">Usuario</span>!
+                            👋
+                        </h2>
+                        <p class="text-indigo-100 max-w-xl">
+                            Aquí tienes el resumen de tu actividad financiera de
+                            hoy. Tienes 3 notificaciones nuevas.
+                        </p>
+                        <button
+                            class="mt-6 px-6 py-2 bg-white text-indigo-600 font-bold rounded-lg shadow-md hover:bg-gray-50 transition-colors"
+                        >
+                            Ver Reporte Completo
+                        </button>
+                    </div>
+                    <!-- Decoración de fondo -->
+                    <div
+                        class="absolute right-0 top-0 h-full w-1/2 opacity-10 pointer-events-none"
+                    >
+                        <Activity
+                            class="w-full h-full transform scale-150 translate-x-10 -translate-y-10"
+                        />
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <!-- Card 1 -->
+                    <div
+                        class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p
+                                    class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                                >
+                                    Saldo Total
+                                </p>
+                                <h3
+                                    id="total-balance"
+                                    class="text-3xl font-bold text-gray-900 dark:text-white mt-1"
+                                >
+                                    $0.00
+                                </h3>
+                            </div>
+                            <div
+                                class="p-3 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl"
+                            >
+                                <Wallet class="w-6 h-6" />
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <span
+                                class="flex items-center text-green-500 font-medium bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded-md"
+                            >
+                                <ArrowUpRight class="w-4 h-4 mr-1" />
+                                +12.5%
+                            </span>
+                            <span class="text-gray-400 ml-2"
+                                >vs mes anterior</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p
+                                    class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                                >
+                                    Gastos (Mes)
+                                </p>
+                                <h3
+                                    id="total-expenses"
+                                    class="text-3xl font-bold text-gray-900 dark:text-white mt-1"
+                                >
+                                    $0.00
+                                </h3>
+                            </div>
+                            <div
+                                class="p-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl"
+                            >
+                                <ArrowDownRight class="w-6 h-6" />
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <span
+                                class="flex items-center text-red-500 font-medium bg-red-50 dark:bg-red-900/20 px-2 py-0.5 rounded-md"
+                            >
+                                <ArrowUpRight class="w-4 h-4 mr-1" />
+                                +2.4%
+                            </span>
+                            <span class="text-gray-400 ml-2"
+                                >vs mes anterior</span
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
+                    >
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p
+                                    class="text-sm font-medium text-gray-500 dark:text-gray-400"
+                                >
+                                    Inversiones
+                                </p>
+                                <h3
+                                    id="investments-amount"
+                                    class="text-3xl font-bold text-gray-900 dark:text-white mt-1"
+                                >
+                                    $0.00
+                                </h3>
+                            </div>
+                            <div
+                                class="p-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl"
+                            >
+                                <TrendingUp class="w-6 h-6" />
+                            </div>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <span
+                                class="flex items-center text-purple-500 font-medium bg-purple-50 dark:bg-purple-900/20 px-2 py-0.5 rounded-md"
+                            >
+                                <ArrowUpRight class="w-4 h-4 mr-1" />
+                                +5.8%
+                            </span>
+                            <span class="text-gray-400 ml-2"
+                                >Retorno estimado</span
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions Section -->
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden"
+                >
+                    <div
+                        class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center"
+                    >
+                        <h3
+                            class="text-xl font-bold text-gray-800 dark:text-white"
+                        >
+                            Últimas Transacciones
+                        </h3>
+                        <button
+                            class="text-indigo-600 hover:text-indigo-700 text-sm font-medium hover:underline"
+                            >Ver todo</button
+                        >
+                    </div>
+                    <div class="p-0">
+                        <table class="w-full text-left">
+                            <thead
+                                class="bg-gray-50 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 text-xs uppercase font-semibold"
+                            >
+                                <tr>
+                                    <th class="px-6 py-4">Descripción</th>
+                                    <th class="px-6 py-4">Categoría</th>
+                                    <th class="px-6 py-4">Fecha</th>
+                                    <th class="px-6 py-4 text-right">Monto</th>
+                                    <th class="px-6 py-4 text-center">Estado</th
+                                    >
+                                </tr>
+                            </thead>
+                            <tbody
+                                id="transactions-table-body"
+                                class="divide-y divide-gray-100 dark:divide-gray-700"
+                            >
+                                <!-- Filas inyectadas por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
 </BaseLayout>
 
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        const dashboardSummary = document.getElementById('dashboard-summary');
-        const transactionsList = document.getElementById('transactions-list');
+<script>
+    // Usamos script type module para evitar is:inline y aprovechar el scope,
+    // pero como astro procesa esto en build time y necesitamos runtime client side,
+    // mantenemos la lógica dentro de un listener de DOMContentLoaded o usamos un script tag clásico.
+    // Para simplificar y evitar problemas de hidratación en Astro estático sin framework JS:
 
-        // Función para formatear números como moneda
-        const formatter = new Intl.NumberFormat('es-VE', {
-            style: 'currency',
-            currency: 'VES', // o USD si prefieres, aunque puse EUR en los placeholders
-            minimumFractionDigits: 2,
-        });
+    document.addEventListener("DOMContentLoaded", () => {
+        const userStr = localStorage.getItem("user");
 
-        // 1. Mostrar información del usuario en el header
-        if (user) {
-            const userNameElement = document.getElementById('user-name');
-            if (userNameElement) userNameElement.textContent = `${user.first_name} ${user.last_name}`;
-
-            const userInitialsElement = document.getElementById('user-initials');
-            if (userInitialsElement) {
-                const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`.toUpperCase();
-                userInitialsElement.querySelector('span').textContent = initials;
-            }
-        } else {
-            window.location.href = '/login';
+        // 1. Verificar Autenticación Mock
+        if (!userStr) {
+            window.location.href = "/login";
             return;
         }
 
-        // 2. Obtener y mostrar datos del dashboard
-        if (user.company_id) {
-            const companyNameElement = document.getElementById('company-name');
-            if (companyNameElement) companyNameElement.textContent = `ID: ${user.company_id}`;
+        const user = JSON.parse(userStr);
 
-            try {
-                const response = await fetch(`http://localhost:3000/dashboard-data/${user.company_id}`);
-                const { data } = await response.json();
+        // 2. Actualizar UI con datos del usuario
+        const headerUserName = document.getElementById("header-user-name");
+        const welcomeUserName = document.getElementById("welcome-user-name");
+        const userAvatar = document.getElementById("user-avatar");
 
-                if (response.ok) {
-                    document.getElementById('total-balance').textContent = formatter.format(data.totalBalance);
-                    document.getElementById('budget-amount').textContent = formatter.format(data.budget);
-                    document.getElementById('investments-amount').textContent = formatter.format(data.investments);
+        if (headerUserName)
+            headerUserName.textContent = `${user.first_name} ${user.last_name}`;
+        if (welcomeUserName) welcomeUserName.textContent = user.first_name;
+        if (userAvatar)
+            userAvatar.textContent = user.first_name.charAt(0).toUpperCase();
 
-                    // Renderizar las transacciones
-                    transactionsList.innerHTML = ''; // Limpiar el contenido anterior
-                    if (data.transactions.length > 0) {
-                        data.transactions.forEach(tx => {
-                            const transactionElement = document.createElement('div');
-                            const typeColor = tx.type === 'ingreso' ? 'text-green-600' : 'text-red-600';
-                            const typeSign = tx.type === 'ingreso' ? '+' : '-';
-                            transactionElement.className = `p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex justify-between items-center`;
-                            transactionElement.innerHTML = `
-                                <div>
-                                    <p class="font-semibold text-gray-900 dark:text-gray-100">${tx.description}</p>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">${new Date(tx.transaction_date).toLocaleDateString()}</p>
-                                </div>
-                                <span class="font-bold ${typeColor}">${typeSign} ${formatter.format(tx.amount)}</span>
-                            `;
-                            transactionsList.appendChild(transactionElement);
-                        });
-                    } else {
-                        transactionsList.innerHTML = `<p class="text-gray-500 dark:text-gray-400 text-center">No hay transacciones recientes.</p>`;
-                    }
+        // 3. Generar Datos Mock (Super Decentes)
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 2,
+        });
 
-                } else {
-                    dashboardSummary.innerHTML = `<p class="text-red-500 text-center col-span-3">No se pudieron cargar los datos del dashboard.</p>`;
-                    transactionsList.innerHTML = `<p class="text-red-500 text-center">No se pudieron cargar las transacciones.</p>`;
-                }
-            } catch (error) {
-                console.error('Error al obtener los datos del dashboard:', error);
-                dashboardSummary.innerHTML = `<p class="text-red-500 text-center col-span-3">Error de conexión con el servidor.</p>`;
-                transactionsList.innerHTML = `<p class="text-red-500 text-center">Error de conexión con el servidor.</p>`;
-            }
-        } else {
-             dashboardSummary.innerHTML = `<p class="text-gray-500 text-center col-span-3">Este usuario no está asociado a una compañía.</p>`;
-             transactionsList.innerHTML = `<p class="text-gray-500 text-center">No hay transacciones que mostrar.</p>`;
-        }
+        // Simular datos
+        const mockData = {
+            balance: 24500.5,
+            expenses: 1250.0,
+            investments: 8900.75,
+            transactions: [
+                {
+                    id: 1,
+                    desc: "Pago de Nómina",
+                    cat: "Negocios",
+                    date: "2023-10-25",
+                    amount: -1200.0,
+                    status: "Completado",
+                },
+                {
+                    id: 2,
+                    desc: "Venta de Servicios",
+                    cat: "Ingresos",
+                    date: "2023-10-24",
+                    amount: 3500.0,
+                    status: "Completado",
+                },
+                {
+                    id: 3,
+                    desc: "Suscripción Software",
+                    cat: "Operativo",
+                    date: "2023-10-23",
+                    amount: -49.99,
+                    status: "Pendiente",
+                },
+                {
+                    id: 4,
+                    desc: "Reembolso Cliente",
+                    cat: "Reembolsos",
+                    date: "2023-10-22",
+                    amount: -150.0,
+                    status: "Completado",
+                },
+                {
+                    id: 5,
+                    desc: "Inversión Cripto",
+                    cat: "Finanzas",
+                    date: "2023-10-21",
+                    amount: 500.0,
+                    status: "Procesando",
+                },
+            ],
+        };
+
+        // Renderizar contadores con animación simple
+        document.getElementById("total-balance").textContent = formatter.format(
+            mockData.balance,
+        );
+        document.getElementById("total-expenses").textContent =
+            formatter.format(mockData.expenses);
+        document.getElementById("investments-amount").textContent =
+            formatter.format(mockData.investments);
+
+        // Renderizar tabla
+        const tbody = document.getElementById("transactions-table-body");
+        tbody.innerHTML = mockData.transactions
+            .map((tx) => {
+                const isNegative = tx.amount < 0;
+                const amountClass = isNegative
+                    ? "text-gray-900 dark:text-white"
+                    : "text-green-600 dark:text-green-400 font-bold";
+                const amountSign = isNegative ? "" : "+";
+
+                let statusColor = "bg-gray-100 text-gray-600";
+                if (tx.status === "Completado")
+                    statusColor =
+                        "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400";
+                if (tx.status === "Pendiente")
+                    statusColor =
+                        "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400";
+                if (tx.status === "Procesando")
+                    statusColor =
+                        "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400";
+
+                return `
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <div class="h-8 w-8 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mr-3">
+                                <span class="font-bold text-xs">${tx.desc.charAt(0)}</span>
+                            </div>
+                            <span class="font-medium text-gray-900 dark:text-gray-100">${tx.desc}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${tx.cat}</td>
+                    <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${new Date(tx.date).toLocaleDateString()}</td>
+                    <td class="px-6 py-4 text-right ${amountClass}">
+                        ${amountSign}${formatter.format(tx.amount)}
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <span class="px-3 py-1 rounded-full text-xs font-medium ${statusColor}">
+                            ${tx.status}
+                        </span>
+                    </td>
+                </tr>
+            `;
+            })
+            .join("");
+
+        // Logout logic
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            localStorage.removeItem("user");
+            window.location.href = "/login";
+        });
     });
 </script>

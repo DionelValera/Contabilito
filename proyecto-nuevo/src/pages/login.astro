@@ -217,36 +217,32 @@ const appName = "Contabilito";
                 return;
             }
 
-            const loginUrl = 'http://localhost:3000/login';
-            const requestBody = { identifier: identifier, password: password };
-            const requestOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestBody),
-            };
-
+            // SIMULACIÓN DE LOGIN (MOCK)
+            // En un entorno real, aquí iría el fetch al backend.
             try {
-                const response = await fetch(loginUrl, requestOptions);
-                const data = await response.json(); // Asumimos que la API responde con JSON
+                // Simulamos un pequeño retraso de red
+                await new Promise(resolve => setTimeout(resolve, 800));
 
-                if (response.ok) {
-                localStorage.setItem('user', JSON.stringify(data.user));
+                const mockUser = {
+                    id: 1,
+                    first_name: "Usuario",
+                    last_name: "Demo",
+                    email: identifier,
+                    company_id: "DEMO-123",
+                    role: "admin"
+                };
 
-                    showMessage(loginMessageDiv, 'success', '¡Iniciaste sesión! Te estamos redirigiendo...');
-                    // El middleware manejará la redirección, pero la mantenemos aquí para un feedback rápido.
-                    setTimeout(() => {
-                        window.location.href = '/dashboard';
-                    }, 1500);
-                } else {
-                    const errorMessage = data.message || 'Usuario o contraseña incorrectos. Intenta de nuevo.';
-                    showMessage(loginMessageDiv, 'error', errorMessage);
-                }
+                localStorage.setItem('user', JSON.stringify(mockUser));
+
+                showMessage(loginMessageDiv, 'success', '¡Iniciaste sesión (Modo Demo)! Redirigiendo...');
+
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 1000);
+
             } catch (error) {
                 console.error('Error durante el inicio de sesión:', error);
-                showMessage(loginMessageDiv, 'error', 'Ha ocurrido un error inesperado. Por favor, intenta de nuevo más tarde.');
-            } finally {
+                showMessage(loginMessageDiv, 'error', 'Ha ocurrido un error inesperado.');
                 loginButton.disabled = false;
                 loginButton.textContent = 'Iniciar Sesión';
             }
