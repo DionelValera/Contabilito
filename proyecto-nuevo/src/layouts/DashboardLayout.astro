@@ -11,6 +11,13 @@ const currentPath = Astro.url.pathname;
     <div
         class="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden font-sans"
     >
+        <!-- Mobile Overlay -->
+        <div
+            id="mobile-overlay"
+            class="fixed inset-0 bg-black/50 z-40 hidden md:hidden opacity-0 transition-opacity duration-300"
+        >
+        </div>
+
         <!-- Sidebar Reutilizable -->
         <DashboardSidebar currentPath={currentPath} />
 
@@ -56,5 +63,30 @@ const currentPath = Astro.url.pathname;
                 window.location.href = "/login";
             });
         }
+
+        // 4. Lógica Mobile Sidebar
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const closeSidebarBtn = document.getElementById("close-sidebar-btn");
+        const sidebar = document.getElementById("dashboard-sidebar");
+        const overlay = document.getElementById("mobile-overlay");
+
+        function toggleSidebar() {
+            const isClosed = sidebar.classList.contains("-translate-x-full");
+            if (isClosed) {
+                sidebar.classList.remove("-translate-x-full");
+                overlay.classList.remove("hidden");
+                setTimeout(() => overlay.classList.remove("opacity-0"), 10); // Fade in
+            } else {
+                sidebar.classList.add("-translate-x-full");
+                overlay.classList.add("opacity-0");
+                setTimeout(() => overlay.classList.add("hidden"), 300); // Wait for fade out
+            }
+        }
+
+        if (mobileMenuBtn)
+            mobileMenuBtn.addEventListener("click", toggleSidebar);
+        if (closeSidebarBtn)
+            closeSidebarBtn.addEventListener("click", toggleSidebar);
+        if (overlay) overlay.addEventListener("click", toggleSidebar);
     });
 </script>

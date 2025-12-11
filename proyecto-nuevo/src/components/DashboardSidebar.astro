@@ -7,6 +7,7 @@ import {
     TrendingUp,
     LogOut,
     User,
+    X,
 } from "@lucide/astro";
 
 const { currentPath } = Astro.props;
@@ -20,10 +21,11 @@ const menuItems = [
 ---
 
 <aside
-    class="hidden md:flex flex-col w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 h-screen sticky top-0"
+    id="dashboard-sidebar"
+    class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:static md:flex flex-col h-screen md:sticky md:top-0"
 >
     <div
-        class="flex items-center justify-center h-20 border-b border-gray-100 dark:border-gray-700"
+        class="flex items-center justify-between h-20 px-6 border-b border-gray-100 dark:border-gray-700"
     >
         <div class="flex items-center gap-3">
             <div class="bg-indigo-600 p-2 rounded-xl">
@@ -34,6 +36,12 @@ const menuItems = [
                 >Contabilito</span
             >
         </div>
+        <button
+            id="close-sidebar-btn"
+            class="md:hidden p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400"
+        >
+            <X class="w-6 h-6" />
+        </button>
     </div>
 
     <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
