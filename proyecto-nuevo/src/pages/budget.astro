@@ -1,0 +1,194 @@
+---
+import DashboardLayout from "../layouts/DashboardLayout.astro";
+import { PiggyBank, Target, AlertCircle } from "@lucide/astro";
+---
+
+<DashboardLayout title="Presupuesto">
+    <div class="mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 dark:text-white">
+            Presupuesto Mensual
+        </h2>
+        <p class="text-gray-500 dark:text-gray-400 mt-1">
+            Controla tus gastos y alcanza tus metas financieras.
+        </p>
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div
+            class="bg-gradient-to-br from-indigo-600 to-blue-700 text-white rounded-2xl p-6 shadow-lg relative overflow-hidden"
+        >
+            <div class="relative z-10">
+                <p class="text-indigo-100 font-medium">
+                    Presupuesto Total (Octubre)
+                </p>
+                <div class="flex items-baseline mt-2">
+                    <h3 class="text-4xl font-bold">$5,000.00</h3>
+                    <span class="ml-2 text-indigo-200">USD</span>
+                </div>
+                <div class="mt-6">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Gastado: $3,250.00</span>
+                        <span>Restante: $1,750.00</span>
+                    </div>
+                    <div class="w-full bg-indigo-900/30 rounded-full h-3">
+                        <div
+                            class="bg-white rounded-full h-3"
+                            style="width: 65%"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <PiggyBank
+                class="absolute right-4 bottom-4 w-24 h-24 text-white opacity-10"
+            />
+        </div>
+
+        <div
+            class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700"
+        >
+            <div class="flex items-center gap-4 mb-4">
+                <div
+                    class="p-3 bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded-xl"
+                >
+                    <Target class="w-6 h-6" />
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                        Estado del Ahorro
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                        Meta visual para este mes
+                    </p>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div
+                    class="flex justify-between items-center bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border border-gray-100 dark:border-gray-700"
+                >
+                    <span class="font-medium text-gray-700 dark:text-gray-200"
+                        >Fondo de Emergencia</span
+                    >
+                    <span class="text-green-600 font-bold">+$500.00</span>
+                </div>
+                <div
+                    class="flex justify-between items-center bg-gray-50 dark:bg-gray-700/50 p-3 rounded-xl border border-gray-100 dark:border-gray-700"
+                >
+                    <span class="font-medium text-gray-700 dark:text-gray-200"
+                        >Vacaciones</span
+                    >
+                    <span class="text-gray-400 font-bold">En espera</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Breakdown -->
+    <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">
+        Desglose por Categorías
+    </h3>
+    <div
+        class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6"
+    >
+        <div class="space-y-6" id="budget-categories">
+            <!-- Injected by JS -->
+            <p class="text-gray-500">Cargando categorías...</p>
+        </div>
+    </div>
+</DashboardLayout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            maximumFractionDigits: 0,
+        });
+
+        const budgetData = [
+            {
+                category: "Vivienda",
+                spent: 1200,
+                limit: 1500,
+                color: "bg-blue-500",
+            },
+            {
+                category: "Alimentación",
+                spent: 650,
+                limit: 800,
+                color: "bg-green-500",
+            },
+            {
+                category: "Transporte",
+                spent: 300,
+                limit: 400,
+                color: "bg-yellow-500",
+            },
+            {
+                category: "Entretenimiento",
+                spent: 450,
+                limit: 300,
+                color: "bg-purple-500",
+                alert: true,
+            },
+            {
+                category: "Servicios",
+                spent: 200,
+                limit: 250,
+                color: "bg-cyan-500",
+            },
+            { category: "Salud", spent: 150, limit: 200, color: "bg-red-400" },
+        ];
+
+        const container = document.getElementById("budget-categories");
+        if (container) {
+            container.innerHTML = budgetData
+                .map((item) => {
+                    const percentage = Math.min(
+                        (item.spent / item.limit) * 100,
+                        100,
+                    );
+                    const isOverBudget = item.spent > item.limit;
+                    const progressColor = isOverBudget
+                        ? "bg-red-500"
+                        : item.color;
+                    const statusText = isOverBudget
+                        ? "¡Excedido!"
+                        : `${Math.round(percentage)}%`;
+                    const statusColor = isOverBudget
+                        ? "text-red-500 font-bold"
+                        : "text-gray-500";
+
+                    return `
+                    <div>
+                        <div class="flex justify-between items-end mb-1">
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-white text-lg">${item.category}</h4>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Límite: ${formatter.format(item.limit)}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="${statusColor} text-sm">${statusText}</span>
+                                <p class="font-bold text-gray-800 dark:text-white">${formatter.format(item.spent)}</p>
+                            </div>
+                        </div>
+                        <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
+                            <div class="${progressColor} h-4 rounded-full transition-all duration-1000 ease-out" style="width: ${percentage}%"></div>
+                        </div>
+                        ${
+                            isOverBudget
+                                ? `
+                            <p class="text-red-500 text-xs mt-1 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                                Te has pasado del presupuesto en esta categoría.
+                            </p>
+                        `
+                                : ""
+                        }
+                    </div>
+                `;
+                })
+                .join("");
+        }
+    });
+</script>

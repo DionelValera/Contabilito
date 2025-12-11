@@ -1,0 +1,276 @@
+---
+import DashboardLayout from "../layouts/DashboardLayout.astro";
+import { Filter, Download, Plus } from "@lucide/astro";
+---
+
+<DashboardLayout title="Transacciones">
+    <div
+        class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4"
+    >
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 dark:text-white">
+                Todas las Transacciones
+            </h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-1">
+                Gestiona y revisa tu historial financiero completo.
+            </p>
+        </div>
+        <div class="flex items-center gap-3">
+            <button
+                class="flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm"
+            >
+                <Filter class="w-4 h-4 mr-2" />
+                Filtrar
+            </button>
+            <button
+                class="flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm"
+            >
+                <Download class="w-4 h-4 mr-2" />
+                Exportar
+            </button>
+            <button
+                class="flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl transition-colors shadow-md shadow-indigo-200 dark:shadow-none"
+            >
+                <Plus class="w-4 h-4 mr-2" />
+                Nueva Transacción
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div
+            class="bg-indigo-50 dark:bg-indigo-900/20 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-800/30"
+        >
+            <p class="text-indigo-600 dark:text-indigo-400 font-medium text-sm">
+                Ingresos Totales (Mes)
+            </p>
+            <p class="text-2xl font-bold text-indigo-900 dark:text-white mt-1">
+                $12,450.00
+            </p>
+        </div>
+        <div
+            class="bg-red-50 dark:bg-red-900/20 p-6 rounded-2xl border border-red-100 dark:border-red-800/30"
+        >
+            <p class="text-red-600 dark:text-red-400 font-medium text-sm">
+                Gastos Totales (Mes)
+            </p>
+            <p class="text-2xl font-bold text-red-900 dark:text-white mt-1">
+                $4,280.50
+            </p>
+        </div>
+        <div
+            class="bg-green-50 dark:bg-green-900/20 p-6 rounded-2xl border border-green-100 dark:border-green-800/30"
+        >
+            <p class="text-green-600 dark:text-green-400 font-medium text-sm">
+                Ahorro Neto
+            </p>
+            <p class="text-2xl font-bold text-green-900 dark:text-white mt-1">
+                $8,169.50
+            </p>
+        </div>
+    </div>
+
+    <div
+        class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden"
+    >
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead
+                    class="bg-gray-50 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 text-xs uppercase font-semibold"
+                >
+                    <tr>
+                        <th class="px-6 py-4">ID</th>
+                        <th class="px-6 py-4">Descripción</th>
+                        <th class="px-6 py-4">Categoría</th>
+                        <th class="px-6 py-4">Fecha</th>
+                        <th class="px-6 py-4">Método</th>
+                        <th class="px-6 py-4 text-right">Monto</th>
+                        <th class="px-6 py-4 text-center">Estado</th>
+                        <th class="px-6 py-4"></th>
+                    </tr>
+                </thead>
+                <tbody
+                    id="all-transactions-body"
+                    class="divide-y divide-gray-100 dark:divide-gray-700 text-sm"
+                >
+                    <!-- JS Injected -->
+                    <tr>
+                        <td
+                            colspan="8"
+                            class="px-6 py-8 text-center text-gray-500"
+                            >Cargando transacciones...</td
+                        >
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div
+            class="p-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center text-sm text-gray-500"
+        >
+            <span>Mostrando 1-10 de 45 transacciones</span>
+            <div class="flex gap-2">
+                <button
+                    class="px-3 py-1 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50"
+                    disabled>Anterior</button
+                >
+                <button
+                    class="px-3 py-1 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    >Siguiente</button
+                >
+            </div>
+        </div>
+    </div>
+</DashboardLayout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Formateador
+        const formatter = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        });
+
+        const transactions = [
+            {
+                id: "#TRX-9823",
+                desc: "Pago de Nómina",
+                cat: "Negocios",
+                date: "2023-10-25",
+                method: "Transferencia",
+                amount: -1200.0,
+                status: "Completado",
+            },
+            {
+                id: "#TRX-9822",
+                desc: "Venta de Servicios",
+                cat: "Ingresos",
+                date: "2023-10-24",
+                method: "PayPal",
+                amount: 3500.0,
+                status: "Completado",
+            },
+            {
+                id: "#TRX-9821",
+                desc: "Suscripción Software",
+                cat: "Operativo",
+                date: "2023-10-23",
+                method: "Tarjeta Crédito",
+                amount: -49.99,
+                status: "Pendiente",
+            },
+            {
+                id: "#TRX-9820",
+                desc: "Reembolso Cliente",
+                cat: "Reembolsos",
+                date: "2023-10-22",
+                method: "Transferencia",
+                amount: -150.0,
+                status: "Completado",
+            },
+            {
+                id: "#TRX-9819",
+                desc: "Inversión Cripto",
+                cat: "Finanzas",
+                date: "2023-10-21",
+                method: "Binance Pay",
+                amount: 500.0,
+                status: "Procesando",
+            },
+            {
+                id: "#TRX-9818",
+                desc: "Almuerzo Equipo",
+                cat: "Comida",
+                date: "2023-10-20",
+                method: "Efectivo",
+                amount: -85.5,
+                status: "Completado",
+            },
+            {
+                id: "#TRX-9817",
+                desc: "Mantenimiento Web",
+                cat: "Tecnología",
+                date: "2023-10-19",
+                method: "Transferencia",
+                amount: -200.0,
+                status: "Completado",
+            },
+            {
+                id: "#TRX-9816",
+                desc: "Venta Producto A",
+                cat: "Ventas",
+                date: "2023-10-18",
+                method: "Stripe",
+                amount: 120.0,
+                status: "Completado",
+            },
+            {
+                id: "#TRX-9815",
+                desc: "Gasolina",
+                cat: "Transporte",
+                date: "2023-10-18",
+                method: "Tarjeta Débito",
+                amount: -45.0,
+                status: "Completado",
+            },
+            {
+                id: "#TRX-9814",
+                desc: "Consultoría",
+                cat: "Ingresos",
+                date: "2023-10-17",
+                method: "Transferencia",
+                amount: 800.0,
+                status: "Pendiente",
+            },
+        ];
+
+        const tbody = document.getElementById("all-transactions-body");
+        if (tbody) {
+            tbody.innerHTML = transactions
+                .map((tx) => {
+                    const isNegative = tx.amount < 0;
+                    const amountClass = isNegative
+                        ? "text-gray-900 dark:text-white"
+                        : "text-green-600 dark:text-green-400 font-bold";
+                    const amountSign = isNegative ? "" : "+";
+
+                    let statusColor = "bg-gray-100 text-gray-600";
+                    if (tx.status === "Completado")
+                        statusColor =
+                            "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400";
+                    if (tx.status === "Pendiente")
+                        statusColor =
+                            "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400";
+                    if (tx.status === "Procesando")
+                        statusColor =
+                            "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400";
+
+                    return `
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors group">
+                        <td class="px-6 py-4 text-gray-400 font-mono text-xs">${tx.id}</td>
+                        <td class="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">${tx.desc}</td>
+                        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">
+                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                                ${tx.cat}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${new Date(tx.date).toLocaleDateString()}</td>
+                         <td class="px-6 py-4 text-gray-500 dark:text-gray-400">${tx.method}</td>
+                        <td class="px-6 py-4 text-right ${amountClass}">
+                            ${amountSign}${formatter.format(tx.amount)}
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium ${statusColor}">
+                                ${tx.status}
+                            </span>
+                        </td>
+                         <td class="px-6 py-4 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button class="text-indigo-600 hover:text-indigo-800 font-medium text-xs">Editar</button>
+                        </td>
+                    </tr>
+                `;
+                })
+                .join("");
+        }
+    });
+</script>

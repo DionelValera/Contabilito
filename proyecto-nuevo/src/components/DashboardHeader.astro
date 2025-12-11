@@ -1,0 +1,53 @@
+---
+import { Bell, Search } from "@lucide/astro";
+
+const { title } = Astro.props;
+---
+
+<header
+    class="flex items-center justify-between px-8 py-5 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md sticky top-0 z-20 border-b border-gray-200 dark:border-gray-700"
+>
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{title}</h1>
+
+    <div class="flex items-center gap-6">
+        <div class="relative hidden md:block">
+            <Search
+                class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            />
+            <input
+                type="text"
+                placeholder="Buscar..."
+                class="pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 text-sm w-64 transition-all"
+            />
+        </div>
+
+        <button
+            class="relative p-2 text-gray-500 hover:text-indigo-600 transition-colors"
+        >
+            <Bell class="w-6 h-6" />
+            <span
+                class="absolute top-1 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-gray-800"
+            ></span>
+        </button>
+
+        <div
+            class="flex items-center gap-3 pl-6 border-l border-gray-200 dark:border-gray-600"
+        >
+            <div class="text-right hidden md:block">
+                <p
+                    id="header-user-name"
+                    class="text-sm font-bold text-gray-800 dark:text-white leading-none"
+                >
+                    Cargando...
+                </p>
+                <p class="text-xs text-gray-500 mt-1">Admin</p>
+            </div>
+            <div
+                class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg"
+                id="user-avatar"
+            >
+                U
+            </div>
+        </div>
+    </div>
+</header>

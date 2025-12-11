@@ -1,0 +1,270 @@
+---
+import DashboardLayout from "../layouts/DashboardLayout.astro";
+import { User, Sun, Moon, Bell, Shield, Key } from "@lucide/astro";
+---
+
+<DashboardLayout title="Mi Perfil">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8">
+            Configuración de Cuenta
+        </h2>
+
+        <!-- Profile Card -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-8 mb-8 flex flex-col md:flex-row items-center md:items-start gap-8"
+        >
+            <div class="relative group cursor-pointer">
+                <div
+                    class="w-32 h-32 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-4xl text-white font-bold shadow-lg"
+                    id="profile-avatar"
+                >
+                    U
+                </div>
+                <div
+                    class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                    <span class="text-white text-sm font-medium">Cambiar</span>
+                </div>
+            </div>
+
+            <div class="flex-1 text-center md:text-left w-full">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center mb-4"
+                >
+                    <div>
+                        <h3
+                            class="text-2xl font-bold text-gray-900 dark:text-white"
+                            id="profile-name"
+                        >
+                            Cargando...
+                        </h3>
+                        <p class="text-gray-500 dark:text-gray-400">
+                            Administrador
+                        </p>
+                    </div>
+                    <button
+                        class="mt-4 md:mt-0 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors font-medium"
+                    >
+                        Editar Perfil
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                        <p
+                            class="text-xs text-gray-500 dark:text-gray-400 mb-1"
+                        >
+                            Correo Electrónico
+                        </p>
+                        <p
+                            class="font-medium text-gray-800 dark:text-white"
+                            id="profile-email"
+                        >
+                            Cargando...
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                        <p
+                            class="text-xs text-gray-500 dark:text-gray-400 mb-1"
+                        >
+                            ID de Empresa
+                        </p>
+                        <p
+                            class="font-medium text-gray-800 dark:text-white"
+                            id="profile-company"
+                        >
+                            Cargando...
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Appearance -->
+            <div
+                class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6"
+            >
+                <div class="flex items-center gap-3 mb-6">
+                    <div
+                        class="p-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg"
+                    >
+                        <Sun class="w-5 h-5 hidden dark:block" />
+                        <!-- Icon depends on logic but static for now -->
+                        <Moon class="w-5 h-5 block dark:hidden" />
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                        Apariencia
+                    </h3>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700 dark:text-gray-300"
+                            >Tema Oscuro</span
+                        >
+                        <label
+                            class="relative inline-flex items-center cursor-pointer"
+                        >
+                            <input
+                                type="checkbox"
+                                value=""
+                                class="sr-only peer"
+                                id="theme-toggle"
+                            />
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"
+                            >
+                            </div>
+                        </label>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        Cambia entre el modo claro y oscuro para reducir la
+                        fatiga visual.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div
+                class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6"
+            >
+                <div class="flex items-center gap-3 mb-6">
+                    <div
+                        class="p-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-lg"
+                    >
+                        <Bell class="w-5 h-5" />
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                        Notificaciones
+                    </h3>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700 dark:text-gray-300"
+                            >Alertas de Presupuesto</span
+                        >
+                        <label
+                            class="relative inline-flex items-center cursor-pointer"
+                        >
+                            <input
+                                type="checkbox"
+                                value=""
+                                class="sr-only peer"
+                                checked
+                            />
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"
+                            >
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700 dark:text-gray-300"
+                            >Resumen Semanal</span
+                        >
+                        <label
+                            class="relative inline-flex items-center cursor-pointer"
+                        >
+                            <input
+                                type="checkbox"
+                                value=""
+                                class="sr-only peer"
+                                checked
+                            />
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"
+                            >
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security -->
+            <div
+                class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 md:col-span-2"
+            >
+                <div class="flex items-center gap-3 mb-6">
+                    <div
+                        class="p-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg"
+                    >
+                        <Shield class="w-5 h-5" />
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                        Seguridad
+                    </h3>
+                </div>
+
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center gap-4"
+                >
+                    <div>
+                        <h4 class="font-medium text-gray-800 dark:text-white">
+                            Contraseña
+                        </h4>
+                        <p class="text-sm text-gray-500">
+                            Último cambio hace 3 meses.
+                        </p>
+                    </div>
+                    <button
+                        class="flex items-center px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
+                    >
+                        <Key class="w-4 h-4 mr-2" />
+                        Cambiar Contraseña
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</DashboardLayout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const userStr = localStorage.getItem("user");
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            document.getElementById("profile-name").textContent =
+                `${user.first_name} ${user.last_name}`;
+            document.getElementById("profile-email").textContent = user.email;
+            document.getElementById("profile-company").textContent =
+                user.company_id || "N/A";
+            document.getElementById("profile-avatar").textContent =
+                user.first_name.charAt(0).toUpperCase();
+        }
+
+        // Theme Toggle Logic
+        // Nota: Tailwind v4 usa dark: class based on media query or specialized selector.
+        // Astro suele manejar esto, pero si es manual en 4.0 a veces se usa `class="dark"` en html.
+        // Aquí asumimos standard manual toggling.
+
+        const themeToggle = document.getElementById("theme-toggle");
+        const html = document.documentElement;
+
+        // Init state
+        if (
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+            themeToggle.checked = true;
+            html.classList.add("dark");
+        } else {
+            themeToggle.checked = false;
+            html.classList.remove("dark");
+        }
+
+        // Listener
+        themeToggle.addEventListener("change", function () {
+            if (this.checked) {
+                html.classList.add("dark");
+                localStorage.theme = "dark";
+            } else {
+                html.classList.remove("dark");
+                localStorage.theme = "light";
+            }
+        });
+    });
+</script>
